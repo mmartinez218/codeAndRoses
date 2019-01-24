@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title> Create Item</title> 
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <link href="css/main.css" type="text/css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Cormorant|Hind+Vadodara" rel="stylesheet">
+</head>
+    
+<body>
+    <header> 
+        <h1>Create Item</h1>
+    </header>
+    <nav>
+        <ul id="navBar">
+            <li v-for="item in items">
+                {{ item.nav }}
+            </li>
+        </ul>
+    </nav>
+    <div id="form" >
+        <form>
+            <p id="formHeading">title: </p>
+            <input v-model="message" placeholder="edit me"> 
+            
+            <p id="formHeading">Description: </p>
+           
+             <textarea name="message" rows="5" cols="30">
+            </textarea>
+            
+            <p id="price">Price: <input id="money" type="number" v-model="message" placeholder="0">. 
+            
+            <input id="money" type="number" v-model="message" placeholder="00"> </p>
+            <input type="file" name="itemImg" accept="image/*">           
+            
+            <button id="button" @click="submit">Submit</button>
+            <button id="button" @click="cancel">Cancel</button>
+        </form>
+        
+    </div>
+    <footer>
+        <ul id="footerBar">
+            <li v-for="item in items">
+                {{ item.footer }}
+            </li>
+        </ul>
+    </footer>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
