@@ -28,11 +28,12 @@
     border: 2px solid #2E0A38;
     color: white;
     font-size: 15px;
-    width: 5em;
+    width: auto;
     height: 2em;
     border-radius: 2px;
     background-color: #2E0A38;
     margin-right: 0.8em;
+    padding: 0em 0.5em 0em 0.5em ;
 }
 
 #button:hover {
@@ -75,6 +76,9 @@ h2{
     background-size: 65em 40em;
     background-position: center;
     background-attachment: fixed;
+    }
+    #money{
+        width: 3em;
     }
  
 #navBar {

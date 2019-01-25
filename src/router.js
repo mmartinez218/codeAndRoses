@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Start from './views/Start.vue'
-import AddItem from './views/AddItem.vue'
+import AddItem from './components/AddItem.vue'
 import SignUp from './views/SignUp.vue'
 import FlowerPage from './views/FlowerPage.vue'
 
@@ -29,7 +29,7 @@ export default new Router({
       component:FlowerPage
     },
     {
-      path: '/AddItem',
+      path: '/components/AddItem',
       name: 'AddItem',
       component:AddItem
     },
