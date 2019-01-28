@@ -1,33 +1,46 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    add a Gallary<br>
-    Bouque of the month<br>
-    add an about button on the nav<br>    
-    and a contact buton<br>   
+   
+      
     <div class="homeGallery">
-    
         <div class="galleryCon">
-            <a href="../imgs/lethal-combination-standard_1.jpg">
-                <img src="../imgs/e630e5aba6313f6472dd9ae263b20e88_23.jpg" class="galleryImgs"/>
-            </a>
-            <p id="caption">  Photo One </p>
+            <p id="title">  Title One </p>
+            <div id="galleryBox">
+                <div id="galleryCaption">
+                Something Fancy about this flower
+                </div><br/>
+                 <button @click="ChangeAddItem" id="button"> Buy It</button>
+            </div>
+            <img src="../imgs/e630e5aba6313f6472dd9ae263b20e88_23.jpg" class="galleryImgs"/>
         </div> 
         
         <div class="galleryCon">
-            <a href="../imgs/lethal-combination-standard_1.jpg">
-                <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="galleryImgs"/>
-            </a>
-            <p id="caption">  Photo Two </p>
+            <p id="title">  Title Two </p>
+             <div id="galleryBox">
+                <div id="galleryCaption">
+                Something Fancy about this flower
+                </div><br/>
+                <button @click="ChangeAddItem" id="button"> Buy It</button>
+            </div>
+            <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="galleryImgs"/>
         </div>  
         
         <div class="galleryCon">
-            <a href="../imgs/lethal-combination-standard_1.jpg">
+            <p id="title">  Title three </p>
+            <div id="galleryBox">
+                <div id="galleryCaption">
+                Something Fancy about this flower
+                </div><br/>
+                <button @click="ChangeAddItem" id="button"> Buy It</button>
+             </div>
+             <a href="../imgs/lethal-combination-standard_1.jpg">
                 <img src="../imgs/lethal-combination-standard_1.jpg" class="galleryImgs"/>
-            </a>
-            <p id="caption">  Photo Three </p>
+             </a>
         </div>   
-    </div>  
+        
+    </div> 
+      add an about button on the nav<br>    
+    and a contact buton<br> 
   </div>
 </template>
 
