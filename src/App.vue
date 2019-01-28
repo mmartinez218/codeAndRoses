@@ -24,6 +24,7 @@
 </template>
 
 <style>
+    
 #button{
     border: 2px solid #2E0A38;
     color: white;
@@ -39,29 +40,34 @@
 #button:hover {
     color: #2E0A38;
     background-color: white;
-    
 }
     
 #footer{
     font-size: 0.8em;
     position: absolute;
-    top: 90em;
+    top: 75em;
     background-color:#2E0A38;
     height: 3em;
     width: 100%;
     margin-right: 4em;
 }
+    
 h1{
     color:white;
-    font-size: 4em;
+    font-size: 5em;
     font-family: 'Cormorant', serif;
-    text-align: center;
     font-weight: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
+    
 h2{
     color:#2E0A38; 
-        
-        
+    font-size: 3em;
+    text-align: center;
 }
     
 #header{
@@ -71,15 +77,41 @@ h2{
     top: 0;
     left: 0;
     width: 100%;
-    height: 10em;
+    height: 13em;
     background-image:url(./imgs/misy-blossoms-desktopnexus-flower-wallpaper-5a9d7a928e1b6e003666eadc.jpg);
     background-size: 65em 40em;
     background-position: center;
     background-attachment: fixed;
+}
+.homeGallery{
+    background-color:red;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+    
+.galleryImgs{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     }
-    #money{
+.galleryImgs:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+    }
+    
+.galleryCon{
+    background-color:green;
+    width: 16em;
+    height: 16em;
+    margin: 0em 3em 0em 3em;
+    }
+    
+#money{
         width: 3em;
-    }
+}
  
 #navBar {
     position:fixed;
@@ -87,7 +119,7 @@ h2{
     background-color:#2E0A38;
     height: 0.1em;
     width: 100%;
-    top: 10em;
+    top: 13em;
     font-family: 'Hind Vadodara', sans-serif;
     border: 2px solid #2E0A38;
 
@@ -117,8 +149,9 @@ h2{
 
 #rView{
     position:relative;
-    top:15em;
-    z-index: 1;
+    top:4.6em;
+    z-index: -1;
+    background-color:yellow;
     
         
     }

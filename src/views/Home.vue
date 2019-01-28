@@ -1,9 +1,7 @@
 <template >
   <div class="home">
-    <router-link to="/start">This is the HOME TEMPLATE</router-link>
-      
-    <HelloWorld msg="Welcome to Code&Roses"/>
-      <SignUp/>
+      <h2> Top Three bouquet for January</h2>
+  <HelloWorld/>
   </div>
 </template>
 
@@ -20,7 +18,7 @@ export default {
 }
 </script>
 <style>
-    .home{
-        background-color: red;
+    HelloWorld{
+        color:red;
     }
 </style>
