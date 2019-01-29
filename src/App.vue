@@ -1,12 +1,13 @@
 <link href="https://fonts.googleapis.com/css?family=Cormorant|Hind+Vadodara" rel="stylesheet"/>
-<template >
+<template>
   <div id="header">
     <h1>Code & Roses</h1>
     <div id="navBar">
       <router-link id="nav" to="/">Code & Roses</router-link>|
       <router-link id="nav" to="/SignUp">Sign Up</router-link> |
       <router-link id="nav" to="/FlowerPage">Catalogue</router-link> |
-      <router-link id="nav" to="/About">Cart</router-link>
+      <router-link id="nav" to="/About">About Us</router-link>
+      <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
     
     <div id="rView">
@@ -23,7 +24,6 @@
 
 </template>
 
-
 <style>
 #banner{
     background-color: red;
@@ -36,9 +36,8 @@
     background-image: url("./imgs/colorful-dream-wallpaper-flower-wallpaper-5a9d848eeb97de0036179d40.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    
-
 }
+    
 #bannerCon{
     background-color: white;
 }
@@ -198,10 +197,8 @@ h3{
 
 #rView{
     position:relative;
-    top:6.9em;
+    top:4.6em;
     z-index: -1;
-    overflow: scroll;
-    
     
 }
     
