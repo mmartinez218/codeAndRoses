@@ -1,28 +1,30 @@
 <link href="https://fonts.googleapis.com/css?family=Cormorant|Hind+Vadodara" rel="stylesheet"/>
+
 <template>
+<div id="homePage">
   <div id="header">
     <h1>Code & Roses</h1>
     <div id="navBar">
-      <router-link id="nav" to="/">Code & Roses</router-link>|
-      <router-link id="nav" to="/SignUp">Sign Up</router-link> |
-      <router-link id="nav" class="subMenu" to="/FlowerPage">Catalogue</router-link> |
-      <router-link class="subNav" to="/Bouquets">Bouquets</router-link> |
-      <router-link id="nav" to="/VaseArrangements">Arrangements</router-link> |
-      <router-link id="nav" to="/Planters">Planters</router-link> |
+      <router-link id="nav" to="/">Code & Roses</router-link>
+      <router-link id="nav" to="/SignUp">Sign Up</router-link> 
+      <router-link id="nav" class="subMenu" to="/FlowerPage">Catalogue</router-link> 
+      <router-link class="subNav" to="/Bouquets">Bouquets</router-link> 
+      <router-link id="nav" to="/VaseArrangements">Arrangements</router-link> 
+      <router-link id="nav" to="/Planters">Planters</router-link> 
       <router-link id="nav" to="/About">About Us</router-link>
       <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
-    
-    <div id="rView">
+   </div>
+   <div id="rView">
         <router-view/>
-    </div>
+   </div>
       
-    <div id="footer">
-      <router-link id="nav" to="/">Code & Roses</router-link>|
-      <router-link id="nav" to="/SignUp">Sign Up</router-link> |
-      r<router-link id="nav" to="/FlowerPage">Catalogue</router-link> |
+   <div id="footer">
+      <router-link id="nav" to="/">Code & Roses</router-link>
+      <router-link id="nav" to="/SignUp">Sign Up</router-link> 
+      r<router-link id="nav" to="/FlowerPage">Catalogue</router-link>  
       <router-link id="nav" to="/About">Cart</router-link>
-    </div>
+   </div>
   </div>
 
 </template>
@@ -33,6 +35,7 @@
     width: auto;
     height: 37em;
     margin-top: 2em;
+    margin-bottom: 4em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -154,7 +157,7 @@ h3{
     border-style: solid;
     border-color: #F8EDFF;
     border-radius: 5px;
-        align-items: center;
+    align-items: center;
 
 
 }   
@@ -164,6 +167,9 @@ h3{
     width: 100%;
     height: 80%;
     z-index: 1;
+    border-style: solid;
+    border-color: #2E0A38;
+ 
 }
     
 .galleryImgs:hover{
@@ -211,10 +217,14 @@ h3{
 
 #rView{
     position:relative;
-    top:4.6em;
-    z-index: -1;
+    top:15.6em;
+    overflow: scroll;
+
     
 }
+#homePage{
+}
+    
 .subMenu:hover .subNav {
     opacity: 1;    
 }

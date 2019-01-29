@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 //Navigation
 import Home from './views/Home.vue'
 import Start from './views/Start.vue'

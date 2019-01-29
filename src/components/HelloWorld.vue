@@ -31,9 +31,7 @@
                 </div><br/>
                 <button @click="ChangeAddItem" id="button">See the full collection</button>
              </div>
-             <a href="../imgs/lethal-combination-standard_1.jpg">
                 <img src="../imgs/lethal-combination-standard_1.jpg" class="galleryImgs"/>
-             </a>
         </div>   
         
     </div> 
