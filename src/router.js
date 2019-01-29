@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+//Navigation
 import Home from './views/Home.vue'
 import Start from './views/Start.vue'
-import AddItem from './components/AddItem.vue'
 import SignUp from './views/SignUp.vue'
 import FlowerPage from './views/FlowerPage.vue'
+//Sub Nav
 import Bouquets from './views/Bouquets.vue'
+import VaseArrangements from './views/VaseArrangements.vue'
+import Planters from './views/Planters.vue'
+import AddItem from './components/AddItem.vue'
+
 
 Vue.use(Router)
 

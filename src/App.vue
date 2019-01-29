@@ -5,7 +5,10 @@
     <div id="navBar">
       <router-link id="nav" to="/">Code & Roses</router-link>|
       <router-link id="nav" to="/SignUp">Sign Up</router-link> |
-      <router-link id="nav" to="/FlowerPage">Catalogue</router-link> |
+      <router-link id="nav" class="subMenu" to="/FlowerPage">Catalogue</router-link> |
+      <router-link class="subNav" to="/Bouquets">Bouquets</router-link> |
+      <router-link id="nav" to="/VaseArrangements">Arrangements</router-link> |
+      <router-link id="nav" to="/Planters">Planters</router-link> |
       <router-link id="nav" to="/About">About Us</router-link>
       <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
@@ -65,8 +68,8 @@
     
 #footer{
     font-size: 0.8em;
-    position: absolute;
-    top: 75em;
+    position: fixed;
+    top: 95vh;
     background-color:#2E0A38;
     height: 3em;
     width: 100%;
@@ -119,10 +122,10 @@ h3{
 #galleryBox{
     opacity: 0;
     background-color: brown;
-    margin: 1.1em 1.1em 1.1em 1.1em;
+    margin-top: 4em;
     padding: 1.5em;
     width: 62%;
-    height: 55%;
+    height: 45%;
     position:absolute;
     z-index: 3;
     background-color:rgba(248,237,255,0.9);
@@ -140,20 +143,26 @@ h3{
     
 .galleryCon{
     position: relative;
+    display: flex;
+    flex-direction: column;
    /* background-color:green;*/
     width: 17em;
-    height: 17em;
+    height: auto;
     margin: 0em 3em 0em 3em;
-    padding: 0em 1em 4em 1em;
+    padding: 0em 1em 5% 1em;
     z-index: 1;
     border-style: solid;
     border-color: #F8EDFF;
     border-radius: 5px;
+        align-items: center;
+
+
 }   
     
 .galleryImgs{
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 80%;
     z-index: 1;
 }
     
@@ -193,7 +202,12 @@ h3{
 #nav:hover {
   color: #2E0A38;    
   background-color: white;
-}  
+} 
+    
+.price{
+    font-weight: 600;
+    text-align: center;
+    }    
 
 #rView{
     position:relative;
@@ -201,6 +215,17 @@ h3{
     z-index: -1;
     
 }
+.subMenu:hover .subNav {
+    opacity: 1;    
+}
+    
+.subNav{
+  position: absolute;
+  width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
     
 #title{
     text-align: center;

@@ -1,7 +1,7 @@
 <template>
   <div id="form" >
       <h2> Create an Account</h2>
-        <form action="/addAdmin.php" method="post">
+        <form action="/Codeandroses/addAdmin.php" method="post">
             <p id="formHeading">First name: </p>
             <input v-model="message" placeholder="First Name" name="firstname">
 

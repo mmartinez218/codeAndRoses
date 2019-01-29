@@ -1,12 +1,11 @@
 <template>
   <div class="about">
-    <h2>Shop Collection</h2>
-      <button @click="ChangeAddItem" id="button"> Add Item</button>
+    <h2></h2>
+      <button @click="ChangeAddItem" id="button" > Add Item</button>
        <div v-if="page===1">
         <AddItemsV/>
             </div>
       
-        <Products />
   </div>
 </template>
 <script>
