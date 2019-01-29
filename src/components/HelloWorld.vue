@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
    
-      
     <div class="homeGallery">
         <div class="galleryCon">
             <p id="title">  Title One </p>
@@ -37,10 +36,17 @@
                 <img src="../imgs/lethal-combination-standard_1.jpg" class="galleryImgs"/>
              </a>
         </div>   
-        
     </div> 
       add an about button on the nav<br>    
-    and a contact buton<br> 
+    and a contact buton<br>
+      
+    <div id="banner">
+        <div id="bannerCon">
+            <h3> Shop for any occasion!</h3>
+            <p id="bannerDesc">Check the catalogue for the our finest flowers also add a button bro</p>
+        </div>
+        
+    </div>
   </div>
 </template>
 

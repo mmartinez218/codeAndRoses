@@ -1,13 +1,12 @@
 <link href="https://fonts.googleapis.com/css?family=Cormorant|Hind+Vadodara" rel="stylesheet"/>
-<template>
+<template >
   <div id="header">
     <h1>Code & Roses</h1>
     <div id="navBar">
       <router-link id="nav" to="/">Code & Roses</router-link>|
       <router-link id="nav" to="/SignUp">Sign Up</router-link> |
       <router-link id="nav" to="/FlowerPage">Catalogue</router-link> |
-      <router-link id="nav" to="/About">About Us</router-link>
-      <router-link id="nav" to="/Contact">Contact Us</router-link>
+      <router-link id="nav" to="/About">Cart</router-link>
     </div>
     
     <div id="rView">
@@ -24,7 +23,29 @@
 
 </template>
 
+
 <style>
+#banner{
+    background-color: red;
+    width: auto;
+    height: 37em;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("./imgs/colorful-dream-wallpaper-flower-wallpaper-5a9d848eeb97de0036179d40.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+}
+#bannerCon{
+    background-color: white;
+}
+    
+#bannerDesc{
+    text-align: center;
+}
     
 #button{
     border: 2px solid #2E0A38;
@@ -67,6 +88,12 @@ h2{
     color:#2E0A38; 
     font-size: 3em;
     text-align: center;
+}
+    
+h3{
+    text-align: center;
+    font-size: 4em;
+    margin: auto;
 }
     
 #header{
@@ -171,8 +198,10 @@ h2{
 
 #rView{
     position:relative;
-    top:4.6em;
+    top:6.9em;
     z-index: -1;
+    overflow: scroll;
+    
     
 }
     

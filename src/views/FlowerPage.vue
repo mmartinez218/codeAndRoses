@@ -1,24 +1,20 @@
 <template>
   <div class="about">
-    <h2>Shop Collection</h2>
+    <h2>This is the flower/catalogue page</h2>
       <button @click="ChangeAddItem" id="button"> Add Item</button>
        <div v-if="page===1">
         <AddItemsV/>
             </div>
-      
-        <Products />
   </div>
 </template>
 <script>
     import AddItem from "@/components/AddItem.vue"
     import Register from "@/components/Register.vue"
-    import Products from "@/components/Products.vue"
     export default{
         name:"Start",
         components:{
             AddItemsV:AddItem,
-            MyReg:Register,
-            Products:Products
+            MyReg:Register
             
         },
         data(){
