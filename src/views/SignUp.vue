@@ -3,16 +3,16 @@
       <h2> Create an Account</h2>
         <form>
             <p id="formHeading">First name: </p>
-            <input v-model="message" placeholder="edit me"> 
+            <input v-model="message" placeholder="First Name"> 
             
             <p id="formHeading">Last name: </p>
-            <input v-model="message" placeholder="edit me"> 
+            <input v-model="message" placeholder="Last Name"> 
             
             <p id="formHeading">Email: </p>
-            <input type="email" v-model="message" placeholder="edit me">
+            <input type="email" v-model="message" placeholder="Email">
             
             <p id="formHeading">Password: </p>
-            <input type="password" v-model="message" placeholder="edit me">
+            <input type="password" v-model="message" placeholder="Choose a password">
             <p>Message is: {{ message }}</p>
             
             <button id="button" @click="submit">Submit</button>

@@ -5,6 +5,7 @@ import Start from './views/Start.vue'
 import AddItem from './components/AddItem.vue'
 import SignUp from './views/SignUp.vue'
 import FlowerPage from './views/FlowerPage.vue'
+import Bouquets from './views/Bouquets.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       component:FlowerPage
     },
     {
+      path: '/Bouquets',
+      name: 'Bouquets',
+      component:Bouquets
+    },
+    {    
       path: '/components/AddItem',
       name: 'AddItem',
       component:AddItem

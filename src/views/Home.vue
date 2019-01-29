@@ -1,6 +1,6 @@
 <template >
   <div class="home">
-      <h2> Top Three bouquet for January</h2>
+      <h2> Top Three Products for January</h2>
   <HelloWorld/>
   </div>
 </template>

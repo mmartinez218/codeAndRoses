@@ -2,8 +2,14 @@
   <div id="form" >
       <h2> Add an Item</h2>
         <form>
-            <p id="formHeading">Title: </p>
-            <input v-model="message" placeholder="edit me"> 
+            <p id="formHeading">Type of Product</p>
+            <select>
+                <option value="bouquet">Bouquet</option>
+                <option value="bouquet">Arrangement</option>
+                <option value="bouquet">Planter</option>
+            </select>
+            <p id="formHeading">Name of Product</p>
+            <input v-model="message" placeholder="Name"> 
             
             <p id="formHeading">Description: </p>
            

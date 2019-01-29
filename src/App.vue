@@ -6,7 +6,8 @@
       <router-link id="nav" to="/">Code & Roses</router-link>|
       <router-link id="nav" to="/SignUp">Sign Up</router-link> |
       <router-link id="nav" to="/FlowerPage">Catalogue</router-link> |
-      <router-link id="nav" to="/About">Cart</router-link>
+      <router-link id="nav" to="/About">About Us</router-link>
+      <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
     
     <div id="rView">
