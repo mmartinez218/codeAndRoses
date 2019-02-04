@@ -9,14 +9,15 @@
                     <div id="bouquetCaption">
                     Description of bouquet
                     </div>
-                    
                     <br/>
-                     <button @click="ChangeAddItem" id="button"> Add to Cart </button><!---this is supposed to link to the Shopping Cart--->
+                     <router-link id="button" to="/IndProduct"> 
+                            View
+                     </router-link>
                 </div>
                 <img src="../imgs/standardBouquet.jpg" class="galleryImgs"/>
                 <p id="bouquetPrice" class="price">
                     $130.00 <!--in bold--->
-                    </p>
+                </p>
                 
                 
             </div><div class="galleryCon">
@@ -87,8 +88,4 @@ export default {
   }
 }
 </script>
-<style>
-    HelloWorld{
-        color:red;
-    }
-</style>
+

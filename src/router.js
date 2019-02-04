@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Start from './views/Start.vue'
 import SignUp from './views/SignUp.vue'
+import IndProduct from './views/IndProduct.vue'
 import FlowerPage from './views/FlowerPage.vue'
 //Sub Nav
 import Bouquets from './views/Bouquets.vue'
@@ -20,15 +21,15 @@ export default new Router({
  // base:"/myStuff"
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
+      {    
+      path: '/components/AddItem',
+      name: 'AddItem',
+      component:AddItem
     },
     {
-      path: '/SignUp',
-      name: 'SignUp',
-      component:SignUp
+      path: '/Bouquets',
+      name: 'Bouquets',
+      component:Bouquets
     },
     {
       path: '/FlowerPage',
@@ -36,14 +37,19 @@ export default new Router({
       component:FlowerPage
     },
     {
-      path: '/Bouquets',
-      name: 'Bouquets',
-      component:Bouquets
+      path: '/home',
+      name: 'home',
+      component: Home
     },
-    {    
-      path: '/components/AddItem',
-      name: 'AddItem',
-      component:AddItem
+    {
+      path: '/IndProduct',
+      name: 'IndProduct',
+      component: IndProduct
+    },
+    {
+      path: '/SignUp',
+      name: 'SignUp',
+      component:SignUp
     },
     {
       path: '/Start',

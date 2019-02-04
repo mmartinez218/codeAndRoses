@@ -5,7 +5,7 @@
   <div id="header">
     <h1>Code & Roses</h1>
     <div id="navBar">
-      <router-link id="nav" to="/">Code & Roses</router-link>
+      <router-link id="nav" to="/home">Code & Roses</router-link>
       <router-link id="nav" to="/SignUp">Sign Up</router-link> 
       <router-link id="nav" class="subMenu" to="/FlowerPage">Catalogue</router-link> 
       <router-link class="subNav" to="/Bouquets">Bouquets</router-link> 
@@ -115,15 +115,15 @@ h3{
     background-attachment: fixed;
 }
 .homeGallery{
-    width: auto;
+    width: 100%;
     height: auto;
     display: flex;
-    flex-direction: row;
+    float: left;
     justify-content: center;
 }
     
 #galleryBox{
-    opacity: 0;
+    opacity: 1;
     background-color: brown;
     margin-top: 4em;
     padding: 1.5em;
@@ -242,5 +242,18 @@ h3{
     font-size: 1.5em;
     margin-bottom: 0;
 }
+/** indProduct.vue styles **/
+#indDescription{
+    font-size: 1em;
+    color: #2E0A38;
+    font-family: 'Hind Vadodara', sans-serif;
+}
+#indImg{
+    width: 20%;
+    float: left;
+    margin-right: 2em;
+    }
+
     
+
 </style>
