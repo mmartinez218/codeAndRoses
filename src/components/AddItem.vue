@@ -4,29 +4,71 @@
         <form>
             <p id="formHeading">Type of Product</p>
             <select>
-                <option value="bouquet" name="type">Bouquet</option>
-                <option value="Arrangement" name="type">Arrangement</option>
-                <option value="Planter" name="type">Planter</option>
+                <option value="bouquet" name="type" v-model="type">Bouquet</option>
+                <option value="Arrangement" name="type" v-model="type">Arrangement</option>
+                <option value="Planter" name="type" v-model="type">Planter</option>
             </select>
             <p id="formHeading">Name of Product</p>
-            <input v-model="message" placeholder="Name" name="itemName">
+            <input v-model="flowerName" placeholder="Name" name="itemName">
 
             <p id="formHeading">Description: </p>
 
-             <textarea name="description" rows="5" cols="30">
+             <textarea name="description" rows="5" cols="30" v-model="desc">
             </textarea>
 
-            <p id="price">Price: <input id="money" type="number" v-model="message" placeholder="0" name="price">.
+            <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price">.
 
-            <input id="money" type="number" v-model="message" placeholder="00"> </p>
-            <input type="file" name="itemImg" accept="image/*" >
+            <input id="money" type="number" v-model="message" placeholder="00" v-model="pCents"> </p>
+            <input type="file" name="itemImg" accept="image/*" v-model="dImg">
 
-            <button id="button" @click="submit">Submit</button>
+            <button id="button" @click="addflower">Submit</button>
             <button id="button" @click="cancel">Cancel</button>
         </form>
 
     </div>
 </template>
+<script>
+    export default{
+        name:"AddItem",
+        data(){
+            return{
+                type:"",
+                flowerName:"",
+                desc:"",
+                pDollar:"",
+                pCents:"",
+                price:0,
+                dImg:"",
+                dateAdd:"",
+            }
+        },
+        methods:{
+            addflower:function(){
+              var formData = new FormData();
+
+              formData.append('type', this.type)
+              formData.append('name', this.flowerName)
+              formData.append('price', this.price)
+              formData.append('description', this.desc)
+              formData.append('img', this.dImg)
+              formData.append('datedded', this.date)
+
+              fetch('/postFlower.php', {
+                method: "POST",
+                body: formData
+              })
+              .then((response) => {
+                return response.text()
+              })
+              .then ((data) => {
+                alert(data)
+                this.$router.push("FlowerPage");
+              }).catch( error => { alert(error); });
+                
+            }
+        }
+    }
+</script>
 <style>
 #form{
     margin: auto;
