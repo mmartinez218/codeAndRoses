@@ -1,7 +1,7 @@
 <template>
   <div id="form" >
       <h2> Create an Account</h2>
-        <form action="/Codeandroses/addAdmin.php" method="post">
+        <form>
             <p id="formHeading">First name: </p>
             <input v-model="message" placeholder="First Name" name="firstname">
 
@@ -15,12 +15,53 @@
             <input type="password" v-model="message" placeholder="Choose a password" name="password">
             <p>Message is: {{ message }}</p>
 
-            <button id="button" @click="submit">Submit</button>
+            <button id="button" @click="signup">Submit</button>
             <button id="button" @click="cancel">Cancel</button>
         </form>
 
     </div>
 </template>
+<script>
+    export default{
+        name:"SignUp",
+        data(){
+            return{
+                email: null,
+            }
+        },
+        methods:{
+            signup:function(){
+              // let self = this;
+              var formData = new FormData();
+
+              formData.append('user', 'pat')
+
+              fetch('/test.php', {
+                method: "POST",
+                body: formData
+              })
+              .then((response) => {
+                return response.text()
+              })
+              .then ((data) => {
+                // self.email = data
+                alert(data)
+                this.$router.push("FlowerPage");
+              }).catch( error => { alert(error); });
+                //fetch('../../../flowers_DB/addAdmin.php')
+                // fetch('./test.php')
+                // .then(function(response) {
+                // return response.json();
+                // })
+                // .then(function(res) {
+                // //console.log(res);
+                // alert(res);
+                // });
+                // // alert(this.email);
+            }
+        }
+    }
+</script>
 <style>
 #form{
     margin: auto;

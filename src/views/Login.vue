@@ -1,9 +1,7 @@
 <template>
   <div id="form" >
       <h2> Login</h2>
-        <form action="/Codeandroses/addAdmin.php" method="post">
-        
-
+        <form>
             <p id="formHeading">Email: </p>
             <input type="email" v-model="message" placeholder="Email" name="email">
 
