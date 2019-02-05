@@ -8,7 +8,7 @@
         </div>
         <div>
         <button id="button"> Add to Cart</button><br/>
-        Select a Delivery date:
+        <div id="indDescription">Select a Delivery date:</div>
         <input type="date" placeholder="Select a Delivery Date">
         </div>
     </div>

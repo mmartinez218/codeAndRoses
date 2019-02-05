@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Start from './views/Start.vue'
 import SignUp from './views/SignUp.vue'
+import Login from './views/Login.vue'
 import IndProduct from './views/IndProduct.vue'
 import FlowerPage from './views/FlowerPage.vue'
 //Sub Nav
@@ -45,6 +46,11 @@ export default new Router({
       path: '/IndProduct',
       name: 'IndProduct',
       component: IndProduct
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/SignUp',

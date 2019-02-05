@@ -7,10 +7,27 @@
     <div id="navBar">
       <router-link id="nav" to="/home">Code & Roses</router-link>
       <router-link id="nav" to="/SignUp">Sign Up</router-link> 
-      <router-link id="nav" class="subMenu" to="/FlowerPage">Catalogue</router-link> 
-      <router-link class="subNav" to="/Bouquets">Bouquets</router-link> 
-      <router-link id="nav" to="/VaseArrangements">Arrangements</router-link> 
-      <router-link id="nav" to="/Planters">Planters</router-link> 
+      <router-link id="nav" to="/Login">Login</router-link>
+        
+      <router-link 
+            id="nav"
+            class="dropMenu"
+            to="/FlowerPage">Catalogue</router-link> 
+        
+      <div id="subMenu">
+          <router-link 
+            class="subNav" 
+            to="/Bouquets">Bouquets</router-link> 
+
+          <router-link 
+            class="subNav" 
+            to="/VaseArrangements">Arrangements</router-link> 
+
+          <router-link 
+            class="subNav" 
+            to="/Planters">Planters</router-link> 
+      </div>
+        
       <router-link id="nav" to="/About">About Us</router-link>
       <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
@@ -57,11 +74,11 @@
     color: white;
     font-size: 15px;
     width: auto;
-    height: 2em;
+    height: auto;
     border-radius: 2px;
     background-color: #2E0A38;
-    margin-right: 0.8em;
-    padding: 0em 0.5em 0em 0.5em ;
+    margin: 0.8em 0.8em 0.8em 0;
+    padding: 0.2em 0.5em 0.2em 0.5em ;
 }
 
 #button:hover {
@@ -70,6 +87,8 @@
 }
     
 #footer{
+    z-index: 2;
+    left: 0;
     font-size: 0.8em;
     position: fixed;
     top: 95vh;
@@ -110,9 +129,8 @@ h3{
     width: 100%;
     height: 13em;
     background-image:url(./imgs/misy-blossoms-desktopnexus-flower-wallpaper-5a9d7a928e1b6e003666eadc.jpg);
-    background-size: 65em 40em;
-    background-position: center;
-    background-attachment: fixed;
+    background-size: 100% auto;
+    background-position:bottom;
 }
 .homeGallery{
     width: 100%;
@@ -123,9 +141,9 @@ h3{
 }
     
 #galleryBox{
-    opacity: 1;
+    opacity: 0;
     background-color: brown;
-    margin-top: 4em;
+    margin-top: 7em;
     padding: 1.5em;
     width: 62%;
     height: 45%;
@@ -137,6 +155,7 @@ h3{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 65%;
 
 }
 
@@ -200,11 +219,11 @@ h3{
   bottom: 0.5em;
   padding: 1.4em;
 }
-
+/**
 #navBar a.router-link-exact-active {
   color: #42b983;    
 } 
-    
+   **/ 
 #nav:hover {
   color: #2E0A38;    
   background-color: white;
@@ -222,19 +241,34 @@ h3{
 
     
 }
-#homePage{
-}
-    
-.subMenu:hover .subNav {
-    opacity: 1;    
-}
-    
+
+#subMenu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:4.5em;
+    left:22.5em;
+    width: 150px;
+    height: 100%;
+    text-decoration: none;
+
+    }
+
 .subNav{
-  position: absolute;
-  width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    border-bottom: 5px solid #2E0A38;
+    background-color: #500F62;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+    
+.subNav:hover{
+    background-color: #2E0A38;
+    
+}
+    
+.dropMenu:hover .subNav{
+    display: block;
+} 
 
     
 #title{
@@ -247,9 +281,10 @@ h3{
     font-size: 1em;
     color: #2E0A38;
     font-family: 'Hind Vadodara', sans-serif;
+    margin-bottom: 1em;
 }
 #indImg{
-    width: 20%;
+    width: 40%;
     float: left;
     margin-right: 2em;
     }
