@@ -1,7 +1,6 @@
 <template>
   <div id="form" >
       <h2> Create an Account</h2>
-        <form>
             <p id="formHeading">First name: </p>
             <input v-model="message" placeholder="First Name" name="firstname">
 
@@ -17,7 +16,6 @@
 
             <button id="button" @click="signup">Submit</button>
             <button id="button" @click="cancel">Cancel</button>
-        </form>
 
     </div>
 </template>
@@ -34,9 +32,9 @@
               // let self = this;
               var formData = new FormData();
 
-              formData.append('user', 'pat')
+              formData.append('user', 'patrick')
 
-              fetch('/test.php', {
+              fetch('http://localhost/test.php', {
                 method: "POST",
                 body: formData
               })
