@@ -18,8 +18,8 @@
 
             <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price">.
 
-            <input id="money" type="number" v-model="message" placeholder="00" v-model="pCents"> </p>
-            <input type="file" name="itemImg" accept="image/*" v-model="dImg">
+            <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
+            <input type="file" name="itemImg" accept="image/*" >
 
             <button id="button" @click="addflower">Submit</button>
             <button id="button" @click="cancel">Cancel</button>
@@ -64,7 +64,7 @@
                 alert(data)
                 this.$router.push("FlowerPage");
               }).catch( error => { alert(error); });
-                
+
             }
         }
     }
