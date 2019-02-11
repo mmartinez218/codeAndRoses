@@ -19,7 +19,7 @@
             <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price">.
 
             <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
-            <input type="file" name="itemImg" accept="image/*" >
+            <input type="file" name="itemImg" accept="image/*">
 
             <button id="button" @click="addflower">Submit</button>
             <button id="button" @click="cancel">Cancel</button>
@@ -35,25 +35,28 @@
                 type:"",
                 flowerName:"",
                 desc:"",
-                pDollar:"",
-                pCents:"",
+                pDollar:0,
+                pCents:0,
                 price:0,
                 dImg:"",
-                dateAdd:"",
+                //dateAdd: new Date().toISOString().slice(0,10),
+                dateAdd: "1999-01-01"
             }
         },
         methods:{
             addflower:function(){
+              this.price = this.pDollar+"."+this.pCents;
+
               var formData = new FormData();
 
               formData.append('type', this.type)
-              formData.append('name', this.flowerName)
+              formData.append('itemName', this.flowerName)
               formData.append('price', this.price)
               formData.append('description', this.desc)
-              formData.append('img', this.dImg)
-              formData.append('datedded', this.date)
+              //formData.append('img', this.dImg)
+              formData.append('dateadded', this.dateAdd)
 
-              fetch('/postFlower.php', {
+              fetch('http://localhost/postFlower.php', {
                 method: "POST",
                 body: formData
               })
