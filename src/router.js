@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 //Navigation
 import Home from './views/Home.vue'
+import Contact from './components/Contact.vue'
 import Start from './views/Start.vue'
 import SignUp from './views/SignUp.vue'
 import Login from './views/Login.vue'
@@ -31,6 +32,11 @@ export default new Router({
       path: '/Bouquets',
       name: 'Bouquets',
       component:Bouquets
+    },
+    {
+      path: '/Contact',
+      name: 'Contact',
+      component:Contact
     },
     {
       path: '/FlowerPage',

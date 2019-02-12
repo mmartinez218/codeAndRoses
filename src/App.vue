@@ -194,7 +194,11 @@ h3{
 .galleryImgs:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
-
+#map{
+    width:50%;
+    float: left;
+    margin-right: 1em;
+}
 #money{
         width: 3em;
 }
@@ -277,6 +281,9 @@ h3{
     margin-bottom: 0;
 }
 /** indProduct.vue styles **/
+#indProduct{
+        margin-bottom: 3em;
+}
 #indDescription{
     font-size: 1em;
     color: #2E0A38;
