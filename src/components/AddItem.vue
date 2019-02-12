@@ -1,12 +1,15 @@
 <template>
   <div id="form" >
       <h2> Add an Item</h2>
+      <div v-for="m in dFlowers">
+        {{m.name}} - {{m.price}}
+      </div>
         <form>
             <p id="formHeading">Type of Product</p>
-            <select>
-                <option value="bouquet" name="type" v-model="type">Bouquet</option>
-                <option value="Arrangement" name="type" v-model="type">Arrangement</option>
-                <option value="Planter" name="type" v-model="type">Planter</option>
+            <select name="type" v-model="type">
+                <option value="bouquet" name="type">Bouquet</option>
+                <option value="Arrangement" name="type">Arrangement</option>
+                <option value="Planter" name="type">Planter</option>
             </select>
             <p id="formHeading">Name of Product</p>
             <input v-model="flowerName" placeholder="Name" name="itemName">
@@ -22,7 +25,7 @@
             <input type="file" name="itemImg" accept="image/*">
 
             <button id="button" @click="addflower">Submit</button>
-            <button id="button" @click="cancel">Cancel</button>
+            <button id="button" @click="selectFlower">Cancel</button>
         </form>
 
     </div>
@@ -40,12 +43,36 @@
                 price:0,
                 dImg:"",
                 //dateAdd: new Date().toISOString().slice(0,10),
-                dateAdd: "1999-01-01"
+                dateAdd: "1999-01-01",
+                adminId:1,
+                dFlowers:[]
             }
         },
         methods:{
+            selectFlower:function(){
+              var formData = new FormData();
+
+              formData.append('adminnum', this.adminId);
+
+              fetch('http://localhost/selectFlower.php', {
+                method: "POST",
+                body: formData
+              })
+              .then((response) => {
+                return response.json()
+              })
+              .then ((data) => {
+                this.dFlowers = data[0];
+                //this.dFlowers.push(data[0])
+                //alert(this.dFlowers.name);
+                //console.log(data);
+                this.$router.push("AddItem");
+              }).catch( error => { alert(error); });
+
+            },
             addflower:function(){
               this.price = this.pDollar+"."+this.pCents;
+              parseFloat(this.price)
 
               var formData = new FormData();
 
