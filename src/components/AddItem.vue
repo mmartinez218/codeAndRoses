@@ -1,16 +1,18 @@
 <template>
   <div id="form" >
       <h2> Add an Item</h2>
-      <div v-for="m in dFlowers">
-        {{m.name}} - {{m.price}}
+      <div v-for="m in dFlowers"> 
+        {{m.flowerName}} 
       </div>
         <form>
             <p id="formHeading">Type of Product</p>
+            
             <select name="type" v-model="type">
                 <option value="bouquet" name="type">Bouquet</option>
                 <option value="Arrangement" name="type">Arrangement</option>
                 <option value="Planter" name="type">Planter</option>
             </select>
+            
             <p id="formHeading">Name of Product</p>
             <input v-model="flowerName" placeholder="Name" name="itemName">
 
@@ -24,7 +26,7 @@
             <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
             <input type="file" name="itemImg" accept="image/*">
 
-            <button id="button" @click="addflower">Submit</button>
+           <!-- <button id="button" @click="addflower">Submit</button> -->
             <button id="button" @click="selectFlower">Cancel</button>
         </form>
 
@@ -36,7 +38,7 @@
         data(){
             return{
                 type:"",
-                flowerName:"",
+                flowerName:"default",
                 desc:"",
                 pDollar:0,
                 pCents:0,
@@ -45,9 +47,29 @@
                 //dateAdd: new Date().toISOString().slice(0,10),
                 dateAdd: "1999-01-01",
                 adminId:1,
-                dFlowers:[]
+                dFlowers:[],
             }
         },
+         mounted(){
+        this.socket.on("user_connected", (data)=>{
+            alert("Some one else is on this site! B**** GTFO");
+        });
+        this.socket.on("new_msg",(data)=>{
+            this.dFlowers.push(data);
+        });
+        },
+        
+         methods:{
+        selectFlower:function(){
+            var obj = {
+                flowerName:this.flowerName,
+                //msg:this.msg
+            }
+            this.socket.emit("typed_msg", obj);
+            
+        }
+    }
+        /**
         methods:{
             selectFlower:function(){
               var formData = new FormData();
@@ -96,7 +118,7 @@
               }).catch( error => { alert(error); });
 
             }
-        }
+        }**/
     }
 </script>
 <style>
