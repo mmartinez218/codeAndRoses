@@ -1,18 +1,18 @@
 <template>
   <div id="form" >
       <h2> Add an Item</h2>
-      <div v-for="m in dFlowers"> 
-        {{m.flowerName}} 
+      <div v-for="m in dFlowers">
+        {{m.flowerName}}
       </div>
         <form>
             <p id="formHeading">Type of Product</p>
-            
+
             <select name="type" v-model="type">
                 <option value="bouquet" name="type">Bouquet</option>
                 <option value="Arrangement" name="type">Arrangement</option>
                 <option value="Planter" name="type">Planter</option>
             </select>
-            
+
             <p id="formHeading">Name of Product</p>
             <input v-model="flowerName" placeholder="Name" name="itemName">
 
@@ -27,7 +27,7 @@
             <input type="file" name="itemImg" accept="image/*">
 
            <!-- <button id="button" @click="addflower">Submit</button> -->
-            <button id="button" @click="selectFlower">Cancel</button>
+            <button id="button" @click="addflower">Cancel</button>
         </form>
 
     </div>
@@ -50,33 +50,33 @@
                 dFlowers:[],
             }
         },
-         mounted(){
-        this.socket.on("user_connected", (data)=>{
-            alert("Some one else is on this site! B**** GTFO");
-        });
-        this.socket.on("new_msg",(data)=>{
-            this.dFlowers.push(data);
-        });
-        },
-        
-         methods:{
-        selectFlower:function(){
-            var obj = {
-                flowerName:this.flowerName,
-                //msg:this.msg
-            }
-            this.socket.emit("typed_msg", obj);
-            
-        }
-    }
-        /**
+    //      mounted(){
+    //     this.socket.on("user_connected", (data)=>{
+    //         alert("Some one else is on this site! B**** GTFO");
+    //     });
+    //     this.socket.on("new_msg",(data)=>{
+    //         this.dFlowers.push(data);
+    //     });
+    //     },
+    //
+    //      methods:{
+    //     selectFlower:function(){
+    //         var obj = {
+    //             flowerName:this.flowerName,
+    //             //msg:this.msg
+    //         }
+    //         this.socket.emit("typed_msg", obj);
+    //
+    //     }
+    // }
+
         methods:{
             selectFlower:function(){
               var formData = new FormData();
 
               formData.append('adminnum', this.adminId);
 
-              fetch('http://localhost/selectFlower.php', {
+              fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php', {
                 method: "POST",
                 body: formData
               })
@@ -105,7 +105,7 @@
               //formData.append('img', this.dImg)
               formData.append('dateadded', this.dateAdd)
 
-              fetch('http://localhost/postFlower.php', {
+              fetch('https://coderoses-db.herokuapp.com/postFlower.php', {
                 method: "POST",
                 body: formData
               })
@@ -118,7 +118,7 @@
               }).catch( error => { alert(error); });
 
             }
-        }**/
+        }
     }
 </script>
 <style>
