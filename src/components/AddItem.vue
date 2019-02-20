@@ -4,7 +4,6 @@
       <div v-for="m in dFlowers">
         {{m.flowerName}}
       </div>
-        <form>
             <p id="formHeading">Type of Product</p>
 
             <select name="type" v-model="type">
@@ -28,7 +27,6 @@
 
            <!-- <button id="button" @click="addflower">Submit</button> -->
             <button id="button" @click="addflower">Cancel</button>
-        </form>
 
     </div>
 </template>
@@ -105,7 +103,7 @@
               //formData.append('img', this.dImg)
               formData.append('dateadded', this.dateAdd)
 
-              fetch('https://coderoses-db.herokuapp.com/postFlower.php', {
+              fetch('http://localhost/postFlower.php', {
                 method: "POST",
                 body: formData
               })
@@ -114,7 +112,7 @@
               })
               .then ((data) => {
                 alert(data)
-                this.$router.push("FlowerPage");
+                // this.$router.push("FlowerPage");
               }).catch( error => { alert(error); });
 
             }
