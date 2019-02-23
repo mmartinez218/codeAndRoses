@@ -67,30 +67,38 @@
     //
     //     }
     // }
-
+        mounted (){
+            //If flowers exist in database, grab and display
+            // fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php')
+            // .then((response) => {
+            //   return response.text()
+            // })
+        },
         methods:{
-            selectFlower:function(){
-              var formData = new FormData();
-
-              formData.append('adminnum', this.adminId);
-
-              fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php', {
-                method: "POST",
-                body: formData
-              })
-              .then((response) => {
-                return response.json()
-              })
-              .then ((data) => {
-                this.dFlowers = data[0];
-                //this.dFlowers.push(data[0])
-                //alert(this.dFlowers.name);
-                //console.log(data);
-                this.$router.push("AddItem");
-              }).catch( error => { alert(error); });
-
-            },
+            // selectFlower:function(){
+            //   var formData = new FormData();
+            //
+            //   formData.append('adminnum', this.adminId);
+            //
+            //   fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php', {
+            //     method: "POST",
+            //     body: formData
+            //   })
+            //   .then((response) => {
+            //     return response.json()
+            //   })
+            //   .then ((data) => {
+            //     this.dFlowers = data[0];
+            //     //this.dFlowers.push(data[0])
+            //     //alert(this.dFlowers.name);
+            //     //console.log(data);
+            //     this.$router.push("AddItem");
+            //   }).catch( error => { alert(error); });
+            //
+            // },
             addflower:function(){
+              //After form submit, post flower info to database
+
               this.price = this.pDollar+"."+this.pCents;
               parseFloat(this.price)
 
