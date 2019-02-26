@@ -1,5 +1,10 @@
 <template>
   <div id="form" >
+    <div v-if="loading" id="app">
+      <h2>Loading</h2>
+      <cube-spin></cube-spin>
+    </div>
+    <div v-if="!loading">
       <h2> Add an Item</h2>
       <div v-for="m in dFlowers">
         {{m.flowerName}}
@@ -25,13 +30,18 @@
             <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
             <input type="file" name="itemImg" accept="image/*">
 
-           <!-- <button id="button" @click="addflower">Submit</button> -->
-            <button id="button" @click="addflower">Cancel</button>
-
+           <button id="button" @click="addflower">Submit</button>
+           <button id="button" @click="selectFlower">Cancel</button>
+      </div>
     </div>
 </template>
 <script>
+    import CubeSpin from 'vue-loading-spinner/src/components/Circle'
     export default{
+        components: {
+          CubeSpin
+        },
+
         name:"AddItem",
         data(){
             return{
@@ -46,6 +56,7 @@
                 dateAdd: "1999-01-01",
                 adminId:1,
                 dFlowers:[],
+                loading:false,
             }
         },
     //      mounted(){
@@ -67,37 +78,36 @@
     //
     //     }
     // }
-        mounted (){
-            //If flowers exist in database, grab and display
-            // fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php')
-            // .then((response) => {
-            //   return response.text()
-            // })
-        },
         methods:{
-            // selectFlower:function(){
-            //   var formData = new FormData();
-            //
-            //   formData.append('adminnum', this.adminId);
-            //
-            //   fetch('https://coderoses-db.herokuapp.com/mysql/selectFlower.php', {
-            //     method: "POST",
-            //     body: formData
-            //   })
-            //   .then((response) => {
-            //     return response.json()
-            //   })
-            //   .then ((data) => {
-            //     this.dFlowers = data[0];
-            //     //this.dFlowers.push(data[0])
-            //     //alert(this.dFlowers.name);
-            //     //console.log(data);
-            //     this.$router.push("AddItem");
-            //   }).catch( error => { alert(error); });
-            //
-            // },
+            theDate:function(){
+              var nd = new Date();
+              alert(nd.getFullYear());
+            },
+            selectFlower:function(){
+              var formData = new FormData();
+
+              formData.append('adminnum', this.adminId);
+
+              fetch('https://coderoses-db.herokuapp.com/selectFlower.php', {
+                method: "POST",
+                body: formData
+              })
+              .then((response) => {
+                return response.text()
+              })
+              .then ((data) => {
+                alert(data);
+                //this.dFlowers = data[0];
+                //this.dFlowers.push(data[0])
+                //alert(this.dFlowers.name);
+                //console.log(data);
+                //this.$router.push("AddItem");
+              }).catch( error => { alert(error); });
+
+            },
             addflower:function(){
               //After form submit, post flower info to database
+              this.loading = true;
 
               this.price = this.pDollar+"."+this.pCents;
               parseFloat(this.price)
@@ -111,17 +121,21 @@
               //formData.append('img', this.dImg)
               formData.append('dateadded', this.dateAdd)
 
-              fetch('http://localhost/postFlower.php', {
+              fetch('https://coderoses-db.herokuapp.com/postFlower.php', {
                 method: "POST",
                 body: formData
               })
               .then((response) => {
+                this.loading = false;
                 return response.text()
               })
               .then ((data) => {
-                alert(data)
+                alert("Flower Added")
                 // this.$router.push("FlowerPage");
-              }).catch( error => { alert(error); });
+              }).catch( error => {
+                this.loading = false;
+                alert(error);
+              });
 
             }
         }
