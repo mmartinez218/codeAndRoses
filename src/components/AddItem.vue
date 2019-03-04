@@ -25,13 +25,14 @@
              <textarea name="description" rows="5" cols="30" v-model="desc">
             </textarea>
 
-            <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price">.
+            <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price" max="999" min="0">.
 
             <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
             <input type="file" name="itemImg" accept="image/*">
 
            <button id="button" @click="addflower">Submit</button>
            <button id="button" @click="selectFlower">Cancel</button>
+           <button id="button" @click="theDate">chkdate</button>
       </div>
     </div>
 </template>
@@ -80,8 +81,8 @@
     // }
         methods:{
             theDate:function(){
-              var nd = new Date();
-              alert(nd.getFullYear());
+              // alert(this.pDollar);
+
             },
             selectFlower:function(){
               var formData = new FormData();
@@ -109,8 +110,25 @@
               //After form submit, post flower info to database
               this.loading = true;
 
-              this.price = this.pDollar+"."+this.pCents;
-              parseFloat(this.price)
+              //concat date
+              var nd = new Date();
+              var curDay = nd.getDate();
+              var curYear = nd.getFullYear();
+              var curMonth = nd.getMonth()+1;
+              var dDate = curYear+"-"+curMonth+"-"+curDay;
+              this.dateAdd = dDate;
+
+
+              //validate Price
+              if(this.pDollar>999 || this.pCents>99){
+                alert("Enter a valid dollar from 0 and 999 and valid cent from 0 and 99");
+                this.loading = false;
+                return;
+              }else{
+                //concat price
+                this.price = this.pDollar+"."+this.pCents;
+                parseFloat(this.price);
+              }
 
               var formData = new FormData();
 
