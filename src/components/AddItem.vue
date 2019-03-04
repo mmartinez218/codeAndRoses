@@ -1,14 +1,20 @@
 <template>
-  <div id="form" >
+  <div>
+    <div id="listOfFlowers" v-for="(m, i) in dFlowers[0]" :key="compKey + i">
+      <div style="background-color:red">
+      {{m.name}}
+      {{m.type}}
+      {{m.dateadded}}
+      {{m.description}}
+      {{m.price}}
+      </div>
+    </div>
     <div v-if="loading" id="app">
       <h2>Loading</h2>
       <cube-spin></cube-spin>
     </div>
-    <div v-if="!loading">
+    <div id="form" v-if="!loading">
       <h2> Add an Item</h2>
-      <div v-for="m in dFlowers">
-        {{m.flowerName}}
-      </div>
             <p id="formHeading">Type of Product</p>
 
             <select name="type" v-model="type">
@@ -28,11 +34,11 @@
             <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price" max="999" min="0">.
 
             <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
-            <input type="file" name="itemImg" accept="image/*">
+            <input type="file" name="itemImg" accept="image/*" @change="imgUp">
 
            <button id="button" @click="addflower">Submit</button>
-           <button id="button" @click="selectFlower">Cancel</button>
-           <button id="button" @click="theDate">chkdate</button>
+           <button id="button" @click="selectFlower">GrabFlowersFromDatabase</button>
+           <button id="button" @click="theDate">chckArray</button>
       </div>
     </div>
 </template>
@@ -52,13 +58,40 @@
                 pDollar:0,
                 pCents:0,
                 price:0,
-                dImg:"",
+                dImg:null,
                 //dateAdd: new Date().toISOString().slice(0,10),
                 dateAdd: "1999-01-01",
                 adminId:1,
                 dFlowers:[],
                 loading:false,
+                compKey:0,
             }
+        },
+        mounted(){
+          //Grab flowers from database when loading the page
+          var formData = new FormData();
+
+          formData.append('adminnum', this.adminId);
+
+          fetch('https://coderoses-db.herokuapp.com/selectFlower.php', {
+            method: "POST",
+            body: formData
+          })
+          .then((response) => {
+            return response.text()
+          })
+          .then ((data) => {
+
+            //check if there are flowers in the database
+            this.dFlowers.push(JSON.parse(data));
+            console.log(this.dFlowers[0][0]);
+            console.log(data);
+            //this.dFlowers = data[0];
+
+            //alert(this.dFlowers.name);
+            //console.log(data);
+            //this.$router.push("AddItem");
+          }).catch( error => { console.log(error); });
         },
     //      mounted(){
     //     this.socket.on("user_connected", (data)=>{
@@ -82,7 +115,16 @@
         methods:{
             theDate:function(){
               // alert(this.pDollar);
-
+              for(var x=0;x<this.dFlowers[0].length;x++){
+                console.log(this.dFlowers[0][x].name);
+                console.log(this.dFlowers[0][x].dateadded);
+                console.log(this.dFlowers[0][x].description);
+                console.log(this.dFlowers[0][x].price);
+                console.log(this.dFlowers[0][x].type);
+              }
+            },
+            imgUp:function(event){
+              this.dImg=event;
             },
             selectFlower:function(){
               var formData = new FormData();
@@ -97,9 +139,14 @@
                 return response.text()
               })
               .then ((data) => {
-                alert(data);
+                //console.log(data);
+                this.dFlowers.push(JSON.parse(data));
+                // for(var i=0;i<data.length;i++){
+                //   this.dFlowers.push(data[i]);
+                // }
+                console.log(this.dFlowers[0][0]);
                 //this.dFlowers = data[0];
-                //this.dFlowers.push(data[0])
+
                 //alert(this.dFlowers.name);
                 //console.log(data);
                 //this.$router.push("AddItem");
@@ -148,7 +195,9 @@
                 return response.text()
               })
               .then ((data) => {
-                alert("Flower Added")
+                this.compKey++;
+                //alert("Flower Added")
+
                 // this.$router.push("FlowerPage");
               }).catch( error => {
                 this.loading = false;
@@ -169,6 +218,10 @@
     border-color: #F8EDFF;
     border-radius: 5px;
     padding: 1.5em 2em 1.5em 4.5em;
+}
+
+#listOfFlowers{
+  width:100vw;
 }
 
 form{
