@@ -140,7 +140,7 @@
             flowerIdDel:function(dId){
               console.log(dId);
               this.flowerIdToDelete = dId
-            }
+            },
             getFlower:function(){
               this.loading = true;
               var formData = new FormData();
