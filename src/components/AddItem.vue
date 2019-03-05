@@ -7,11 +7,15 @@
       {{m.dateadded}}
       {{m.description}}
       {{m.price}}
+      <button @click="updateFlower(m.flower_id)" >Edit</button>
+      <button @click="deleteFlower(m.flower_id)" >Delete</button>
       </div>
     </div>
     <div v-if="loading" id="app">
       <h2>Loading</h2>
-      <cube-spin></cube-spin>
+      <div style="text-align: center">
+        <cube-spin></cube-spin>
+      </div>
     </div>
     <div id="form" v-if="!loading">
       <h2> Add an Item</h2>
@@ -69,6 +73,7 @@
         },
         mounted(){
           //Grab flowers from database when loading the page
+          this.loading = true;
           var formData = new FormData();
 
           formData.append('adminnum', this.adminId);
@@ -78,6 +83,7 @@
             body: formData
           })
           .then((response) => {
+            this.loading = false;
             return response.text()
           })
           .then ((data) => {
@@ -125,6 +131,12 @@
             },
             imgUp:function(event){
               this.dImg=event;
+            },
+            updateFlower:function(x){
+              alert(x);
+            },
+            deleteFlower:function(x){
+              alert(x);
             },
             selectFlower:function(){
               var formData = new FormData();
