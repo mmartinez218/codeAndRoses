@@ -7,6 +7,7 @@ import Contact from './components/Contact.vue'
 import Start from './views/Start.vue'
 import SignUp from './views/SignUp.vue'
 import Login from './views/Login.vue'
+import adminLogin from './views/adminLogin.vue'
 import IndProduct from './views/IndProduct.vue'
 import FlowerPage from './views/FlowerPage.vue'
 //Sub Nav
@@ -23,6 +24,11 @@ export default new Router({
  // base:"/myStuff"
   base: process.env.BASE_URL,
   routes: [
+      {    
+      path: '/adminLogin',
+      name: 'adminLogin',
+      component:adminLogin
+    },
       {    
       path: '/components/AddItem',
       name: 'AddItem',

@@ -1,18 +1,80 @@
 <template>
   <div>
-    <div id="listOfFlowers" v-for="(m, i) in dFlowers[0]" :key="compKey + i">
-      <div style="background-color:red">
-      {{m.name}}
-      {{m.type}}
-      {{m.dateadded}}
-      {{m.description}}
-      {{m.price}}
-      <button @click="updateFlower(m.flower_id)" >Edit</button>
-      <button @click="deleteFlower(m.flower_id)" >Delete</button>
-      </div>
+    <div class="alerts"  id="form" v-if="updateItemAlert">
+               <h2>Edit</h2>
+
+         <p id="formHeading">Edit</p>
+         <select name="type" v-model="type">
+                <option value="bouquet" name="type">Bouquet</option>
+                <option value="Arrangement" name="type">Arrangement</option>
+                <option value="Planter" name="type">Planter</option>
+            </select>
+
+            <p id="formHeading">Name of Product</p>
+            <input v-model="flowerName" placeholder="Name" name="itemName">
+
+            <p id="formHeading">Description: </p>
+
+             <textarea name="description" rows="5" cols="30" v-model="desc">
+            </textarea>
+
+            <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price" max="999" min="0">.
+
+            <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
+            <input type="file" name="itemImg" accept="image/*" @change="imgUp">
+
+           <button id="button" @click="updateItemAlert=false">Cancel</button>
+           <button id="button" @click="" >Update</button>
     </div>
-    <div v-if="loading" id="app">
-      <h2>Loading</h2>
+    <div class="alerts" id="form" v-if="deleteItemAlert">
+        <h4> Are you sure you want to delete this item?</h4>
+        <p style="text-align:center"> All content will be permanently deleted
+            <br>
+            <br>
+            <button id="button" @click="deleteItemAlert=false">Cancel</button>
+            <button id="button">Delete</button>
+        </p>
+        
+    </div>
+    <div 
+    class="galleryCon"
+         id="listOfFlowers"
+    v-for="(m, i) in dFlowers[0]" :key="compKey + i">
+      
+      <p id="title">
+        {{m.name}}<br/>
+      </p>
+      <div id="galleryBox" class="listOfFlowers">
+          {{m.type}}
+          {{m.dateadded}}
+          {{m.description}}
+          {{m.price}}
+      </div>
+     
+        <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="galleryImgs"/>
+        <button 
+            id="button"    
+            @click="updateItemAlert=true" 
+            >
+                Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
+         </button>
+         <button 
+            id="button"    
+            @click="deleteItemAlert=true" 
+            >
+                Delete ({{ deleteItemAlert ? 'visible' : 'hidden' }})
+          </button>
+        
+        
+        <!--
+            <button @click="updateFlower(m.flower_id)" >Edit</button>
+
+            <button @click="deleteFlower(m.flower_id)" >Delete</button>
+        -->
+    </div>
+       
+     <div v-if="loading" id="app">
+      <h3>Loading</h3>
       <div style="text-align: center">
         <cube-spin></cube-spin>
       </div>
@@ -69,6 +131,8 @@
                 dFlowers:[],
                 loading:false,
                 compKey:0,
+                updateItemAlert: false,
+                deleteItemAlert: false,
             }
         },
         mounted(){
@@ -99,25 +163,7 @@
             //this.$router.push("AddItem");
           }).catch( error => { console.log(error); });
         },
-    //      mounted(){
-    //     this.socket.on("user_connected", (data)=>{
-    //         alert("Some one else is on this site! B**** GTFO");
-    //     });
-    //     this.socket.on("new_msg",(data)=>{
-    //         this.dFlowers.push(data);
-    //     });
-    //     },
-    //
-    //      methods:{
-    //     selectFlower:function(){
-    //         var obj = {
-    //             flowerName:this.flowerName,
-    //             //msg:this.msg
-    //         }
-    //         this.socket.emit("typed_msg", obj);
-    //
-    //     }
-    // }
+  
         methods:{
             theDate:function(){
               // alert(this.pDollar);
@@ -216,11 +262,27 @@
                 alert(error);
               });
 
-            }
+            },
         }
     }
 </script>
 <style>
+    .alerts{
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        left: 17%;
+    }
+#editItem{
+    border-color: red;
+    position: absolute;
+    margin: auto;
+    z-index: 2;
+    left: 25%;
+    height: auto;
+    width: 50%;
+    background-color: rebeccapurple;
+}
 #form{
     margin: auto;
     width: 11em;
@@ -230,10 +292,6 @@
     border-color: #F8EDFF;
     border-radius: 5px;
     padding: 1.5em 2em 1.5em 4.5em;
-}
-
-#listOfFlowers{
-  width:100vw;
 }
 
 form{
@@ -259,5 +317,27 @@ input:hover{
 
 input:focus{
     border-color: #2E0A38;
+}
+    
+.galleryImgs{
+    position: relative;
+    z-index: -1;
+    top: 0;
+    opacity: 0.5;
+    
+}
+    
+#galleryBox{
+    position: relative;
+    display: block;
+    opacity: 1;
+    z-index: -1;
+    
+}
+#listOfFlowers{
+        flex-direction: row;
+}
+.listOfFlowers{
+        flex-direction: row;
 }
 </style>

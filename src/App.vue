@@ -118,6 +118,12 @@ h3{
     text-align: center;
     font-size: 4em;
     margin: auto;
+}    
+
+h4{
+    text-align: center;
+    font-size: 1.5em;
+    margin: auto;
 }
     
 #header{
@@ -212,6 +218,7 @@ h3{
     top: 13em;
     font-family: 'Hind Vadodara', sans-serif;
     border: 2px solid #2E0A38;
+
    /** 
     background-color: yellow;
     **/
@@ -222,6 +229,8 @@ h3{
   position: relative;
   bottom: 0.5em;
   padding: 1.4em;
+  text-decoration: none;
+    
 }
 /**
 #navBar a.router-link-exact-active {

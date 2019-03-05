@@ -1,6 +1,6 @@
 <template>
   <div id="form" >
-      <h2> Login</h2>
+      <h2> Admin Login</h2>
         <form>
             <p id="formHeading">Email: </p>
             <input type="email" v-model="message" placeholder="Email" name="email">
@@ -11,8 +11,6 @@
             <button id="button" @click="submit">Login</button>
             <button id="button" @click="cancel">Cancel</button>
         </form>
-        <router-link 
-            to="/adminLogin">Admin Login</router-link> 
 
     </div>
 </template>
