@@ -183,8 +183,6 @@ h4{
     border-color: #F8EDFF;
     border-radius: 5px;
     align-items: center;
-
-
 }   
     
 .galleryImgs{
@@ -200,6 +198,7 @@ h4{
 .galleryImgs:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+    
 #map{
     width:50%;
     float: left;

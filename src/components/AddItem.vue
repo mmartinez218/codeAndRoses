@@ -1,73 +1,5 @@
 <template>
   <div>
-    <div class="alerts"  id="form" v-if="updateItemAlert">
-               <h2>Edit</h2>
-
-         <p id="formHeading">Edit</p>
-         <select name="type" v-model="type">
-                <option value="bouquet" name="type">Bouquet</option>
-                <option value="Arrangement" name="type">Arrangement</option>
-                <option value="Planter" name="type">Planter</option>
-            </select>
-
-            <p id="formHeading">Name of Product</p>
-            <input v-model="flowerName" placeholder="Name" name="itemName">
-
-            <p id="formHeading">Description: </p>
-
-             <textarea name="description" rows="5" cols="30" v-model="desc">
-            </textarea>
-
-            <p id="price">Price: <input id="money" type="number" v-model="pDollar" placeholder="0" name="price" max="999" min="0">.
-
-            <input id="money" type="number" placeholder="00" v-model="pCents"> </p>
-            <input type="file" name="itemImg" accept="image/*" @change="imgUp">
-
-           <button id="button" @click="updateItemAlert=false">Cancel</button>
-           <button id="button" @click="" >Update</button>
-    </div>
-    <div class="alerts" id="form" v-if="deleteItemAlert">
-        <h4> Are you sure you want to delete this item?</h4>
-        <p style="text-align:center"> All content will be permanently deleted
-            <br>
-            <br>
-            <button id="button" @click="deleteItemAlert=false">Cancel</button>
-            <button id="button" @click="deleteFlower(this.flower_id)">Delete</button>
-        </p>
-
-    </div>
-    <div class="galleryCon" id="listOfFlowers" v-for="(m, i) in dFlowers[0]" :key="compKey + i">
-      <p id="title">
-        {{m.name}}<br/>
-      </p>
-      <div id="galleryBox" class="listOfFlowers">
-          {{m.type}}
-          {{m.dateadded}}
-          {{m.description}}
-          {{m.price}}
-      </div>
-
-        <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="galleryImgs"/>
-        <button
-            id="button"
-            @click="updateItemAlert=true"
-            >
-                Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
-         </button>
-         <button
-            id="button"
-            @click="deleteItemAlert=true"
-            >
-                Delete ({{ deleteItemAlert ? 'visible': 'hidden' }})
-          </button>
-
-
-        <!--
-            <button @click="updateFlower(m.flower_id)" >Edit</button>
-
-            <button @click="deleteFlower(m.flower_id)" >Delete</button>
-        -->
-    </div>
 
      <div v-if="loading" id="app">
       <h3>Loading</h3>
@@ -137,6 +69,18 @@
         },
 
         methods:{
+            
+            ChangeGreetings:function(){
+                this.greetings = "lets begin";
+                this.store.globalTest = "something globally new";
+                this.glob = this.store.globalTest;
+            },
+            ChangeAddItem:function(){
+                this.page = 1;
+            },
+            ChangeRegister:function(){
+                this.page = 2;
+            },
             flowerIdDel:function(dId){
               console.log(dId);
               this.flowerIdToDelete = dId
@@ -253,11 +197,12 @@
               });
 
             },
+            
         }
     }
 </script>
 <style>
-    .alerts{
+.alerts{
         position: absolute;
         background-color: white;
         z-index: 5;
@@ -309,21 +254,6 @@ input:focus{
     border-color: #2E0A38;
 }
 
-.galleryImgs{
-    position: relative;
-    z-index: -1;
-    top: 0;
-    opacity: 0.5;
-
-}
-
-#galleryBox{
-    position: relative;
-    display: block;
-    opacity: 1;
-    z-index: -1;
-
-}
 #listOfFlowers{
         flex-direction: row;
 }
