@@ -37,11 +37,11 @@
             <br>
             <br>
             <button id="button" @click="deleteItemAlert=false">Cancel</button>
-            <button id="button" @click="deleteFlower(this.flower_id)">Delete</button>
+            <button id="button" @click="deleteFlower" :key="compKey">Delete</button>
         </p>
 
     </div>
-      
+
      <div id="itemsCon">
         <div class="" id="listOfFlowers" v-for="(m, i) in dFlowers[0]" :key="compKey + i">
           <p id="itemTitle">
@@ -54,13 +54,13 @@
             {{m.description}}<br/>
             ${{m.price}}<br/><br/>
           </div>
-          <textarea id="reviewInp" name="review" rows="10" cols="">Add a review 
+          <textarea id="reviewInp" name="review" rows="10" cols="">Add a review
           </textarea>
-            
+
           <button id="button" @click="updateItemAlert=true">
                 Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
           </button>
-          <button id="button" @click="deleteItemAlert=true">
+          <button id="button" @click="deleteFlowerPrompt(m.flower_id)">
                 Delete ({{ deleteItemAlert ? 'visible': 'hidden' }})
           </button>
 
@@ -80,7 +80,7 @@
             MyReg:Register,
             Products:Products,
             CubeSpin
-            
+
         },
         data(){
            return {
@@ -108,8 +108,11 @@
         mounted(){
           //Grab flowers from database when loading the page
           this.getFlower();
+          console.log("MOUNTflowerpage");
         },
-        
+        watch: {
+
+        },
         methods:{
             ChangeGreetings:function(){
                 this.greetings = "lets begin";
@@ -127,6 +130,7 @@
               this.flowerIdToDelete = dId
             },
             getFlower:function(){
+              console.log("getting flowers");
               this.loading = true;
               var formData = new FormData();
 
@@ -145,21 +149,9 @@
                 //add to array if there is
                 this.dFlowers.push(JSON.parse(data));
                 this.dFlowers = this.dFlowers;
-                console.log(this.dFlowers[0][0]);
-                console.log("yeeet");
                 // change key to attempt rerender
                 this.compKey++;
               }).catch( error => { console.log(error); });
-            },
-            theDate:function(){
-              // alert(this.pDollar);
-              for(var x=0;x<this.dFlowers[0].length;x++){
-                console.log(this.dFlowers[0][x].name);
-                console.log(this.dFlowers[0][x].dateadded);
-                console.log(this.dFlowers[0][x].description);
-                console.log(this.dFlowers[0][x].price);
-                console.log(this.dFlowers[0][x].type);
-              }
             },
             imgUp:function(event){
               this.dImg=event;
@@ -167,23 +159,44 @@
             updateFlower:function(x){
               alert(x);
             },
-            deleteFlower:function(x){
-              alert(x)
-              // var formData = new FormData();
-              //
-              // formData.append('flowerid', x);
-              //
-              // fetch('https://coderoses-db.herokuapp.com/deleteFlower.php', {
-              //   method: "POST",
-              //   body: formData
-              // })
-              // .then((response) => {
-              //   this.loading = false;
-              //   return response.text()
-              // })
-              // .then ((data) => {
-              //   alert(data)
-              // }).catch( error => { console.log(error); });
+            deleteFlower:function(){
+              //Delete the flower with flowerid set to floweridtodelete
+              console.log("ck start", this.compKey);
+              this.deleteItemAlert=false
+              this.loading = true;
+
+              var formData = new FormData();
+              formData.append('flowerid', this.flowerIdToDelete);
+              fetch('https://coderoses-db.herokuapp.com/deleteFlower.php', {
+                method: "POST",
+                body: formData
+              })
+              .then((response) => {
+                this.loading = false;
+                this.compKey += 1;
+                this.getFlower();
+                return response.text()
+              })
+              .then ((data) => {
+                console.log(data);
+                //this.$router.push("FlowerPage");
+              }).catch( error => { console.log(error); });
+
+              //update the flower page with the database without the deleted flower
+
+
+              console.log("yaaww", this.flowerIdToDelete, this.compKey);
+
+            },
+            deleteFlowerPrompt:function(x){
+              //Open Delete dialogue and set floweridtodelete
+              //take the flower id from the post and set up a variable
+              this.flowerIdToDelete = x;
+              // Open are you sure to delete dialogue
+              this.deleteItemAlert=true;
+
+              console.log("yeeet", this.flowerIdToDelete);
+
             },
             addflower:function(){
               //After form submit, post flower info to database
@@ -238,9 +251,9 @@
               });
 
             },
-            
+
         }
-    
+
     }
 </script>
 
@@ -250,7 +263,7 @@
     background-color: white;
     z-index: 5;
 }
-        
+
 .editAlert{
     top: 10%;
 }
@@ -264,16 +277,16 @@
     width: 50%;
     background-color: rebeccapurple;
 }
-    
+
 #itemsCon{
     position: relative;
-    flex-direction: row; 
+    flex-direction: row;
     margin-bottom:100px;
    /** grid-template-columns: repeat(3, 1fr); **/
 }
 #itemBox{
-        
-}    
+
+}
 .itemImgs{
     width: auto;
     height:60%;
@@ -286,7 +299,7 @@
     margin-bottom: 3%;
     color: #2E0A38;
 }
-    
+
 #itemTitle{
     font-size: 200%;
     margin-left: 2%;
@@ -305,6 +318,5 @@
     height: 100px;
     width: 60vw;
 }
-   
-</style>
 
+</style>

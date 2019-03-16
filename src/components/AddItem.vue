@@ -56,6 +56,7 @@
                 dateAdd: "1999-01-01",
                 adminId:1,
                 dFlowers:[],
+                flowerArr: 0,
                 loading:false,
                 compKey:0,
                 updateItemAlert: false,
@@ -66,10 +67,11 @@
         mounted(){
           //Grab flowers from database when loading the page
           this.getFlower();
+          console.log("MOUNTadditem");
         },
 
         methods:{
-            
+
             ChangeGreetings:function(){
                 this.greetings = "lets begin";
                 this.store.globalTest = "something globally new";
@@ -102,12 +104,12 @@
               .then ((data) => {
                 //check if there are flowers in the database
                 //add to array if there is
-                this.dFlowers.push(JSON.parse(data));
-                this.dFlowers = this.dFlowers;
-                console.log(this.dFlowers[0][0]);
+                //this.dFlowers.push(JSON.parse(data));
+                this.$set(this.dFlowers, this.flowerArr.length, JSON.parse(data))
+                //this.dFlowers = this.dFlowers;
+                console.log(this.dFlowers);
                 console.log("yeeet");
-                // change key to attempt rerender
-                this.compKey++;
+
               }).catch( error => { console.log(error); });
             },
             theDate:function(){
@@ -123,30 +125,14 @@
             imgUp:function(event){
               this.dImg=event;
             },
-            updateFlower:function(x){
-              alert(x);
-            },
-            deleteFlower:function(x){
-              alert(x)
-              // var formData = new FormData();
-              //
-              // formData.append('flowerid', x);
-              //
-              // fetch('https://coderoses-db.herokuapp.com/deleteFlower.php', {
-              //   method: "POST",
-              //   body: formData
-              // })
-              // .then((response) => {
-              //   this.loading = false;
-              //   return response.text()
-              // })
-              // .then ((data) => {
-              //   alert(data)
-              // }).catch( error => { console.log(error); });
-            },
             addflower:function(){
+              console.log("asd0");
               //After form submit, post flower info to database
               this.loading = true;
+
+              //new array
+
+              //var newObj = {};
 
               //concat date
               var nd = new Date();
@@ -168,6 +154,7 @@
                 parseFloat(this.price);
               }
 
+              //add flower to database
               var formData = new FormData();
 
               formData.append('type', this.type)
@@ -186,18 +173,21 @@
                 return response.text()
               })
               .then ((data) => {
-                //this.compKey++;
+                this.flowerArr = this.dFlowers.length;
+                this.dFlowers = [];
                 this.getFlower();
                 //alert("Flower Added")
-
+                //this.$set(this.dFlowers)
+                console.log("asd1", this.flowerArr);
                 // this.$router.push("FlowerPage");
               }).catch( error => {
                 this.loading = false;
                 alert(error);
               });
 
+
             },
-            
+
         }
     }
 </script>
