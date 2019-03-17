@@ -51,7 +51,7 @@
               .then ((data) => {
                 // self.email = data
                 console.log(data);
-                //this.$router.push("FlowerPage");
+                this.$router.push("FlowerPage");
               }).catch( error => { alert(error); });
                 //fetch('../../../flowers_DB/addAdmin.php')
                 // fetch('./test.php')
