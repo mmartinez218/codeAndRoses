@@ -2,11 +2,11 @@
   <div>
 
      <div v-if="loading" id="app">
-      <h3>Loading</h3>
-      <div style="text-align: center">
-        <cube-spin></cube-spin>
+        <h3>Loading</h3>
+        <div style="text-align: center">
+          <cube-spin></cube-spin>
+        </div>
       </div>
-    </div>
     <div id="form" v-if="!loading">
       <h2> Add an Item</h2>
             <p id="formHeading">Type of Product</p>

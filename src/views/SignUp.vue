@@ -1,26 +1,41 @@
 <template>
-  <div id="form" >
-      <h2> Create an Account</h2>
-            <p id="formHeading">First name: </p>
-            <input v-model="fname" placeholder="First Name" name="firstname">
+  <div>
+    <div v-if="loading" id="app">
+       <h3>Loading</h3>
+       <div style="text-align: center">
+         <cube-spin></cube-spin>
+       </div>
+     </div>
+    <div v-if="!loading">
+      <div id="form" >
+          <h2> Create an Account</h2>
+                <p id="formHeading">First name: </p>
+                <input v-model="fname" placeholder="First Name" name="firstname">
 
-            <p id="formHeading">Last name: </p>
-            <input v-model="lname" placeholder="Last Name" name="lastname">
+                <p id="formHeading">Last name: </p>
+                <input v-model="lname" placeholder="Last Name" name="lastname">
 
-            <p id="formHeading">Email: </p>
-            <input type="email" v-model="email" placeholder="Email" name="email">
+                <p id="formHeading">Email: </p>
+                <input type="email" v-model="email" placeholder="Email" name="email">
 
-            <p id="formHeading">Password: </p>
-            <input type="password" v-model="pass" placeholder="Choose a password" name="password">
-            <!--<p>Message is: {{ message }}</p>-->
+                <p id="formHeading">Password: </p>
+                <input type="password" v-model="pass" placeholder="Choose a password" name="password">
+                <!--<p>Message is: {{ message }}</p>-->
 
-            <button id="button" @click="signup">Submit</button>
-            <!-- <button id="button" @click="cancel">Cancel</button> -->
+                <button id="button" @click="signup">Submit</button>
+                <!-- <button id="button" @click="cancel">Cancel</button> -->
 
+        </div>
+      </div>
     </div>
 </template>
 <script>
+    import CubeSpin from 'vue-loading-spinner/src/components/Circle'
     export default{
+      components: {
+        CubeSpin
+      },
+
         name:"SignUp",
         data(){
             return{
@@ -28,12 +43,15 @@
                 pass: null,
                 fname:null,
                 lname:null,
+                loading:false,
             }
         },
         methods:{
             signup:function(){
-              // let self = this;
-              //
+              //Asynchronous function to take user input
+              //start loading screen
+              this.loading = true;
+              //start fetch
               var formData = new FormData();
 
               formData.append('firstname', this.fname);
@@ -46,23 +64,22 @@
                 body: formData
               })
               .then((response) => {
-                return response.text()
+                return response.json()
               })
               .then ((data) => {
-                // self.email = data
-                console.log(data);
-                this.$router.push("FlowerPage");
+                //console.log(data.status, data.id);
+                //validate if email exists.
+                //if it does, alert user.
+                //iF not create new user and route to flowerpage
+                if(data.status){
+                  console.log("yeep");
+                  this.$router.push("FlowerPage");
+                }else{
+                  console.log("yaawp");
+                  alert("That email already exists.");
+                }
+                this.loading = false;
               }).catch( error => { alert(error); });
-                //fetch('../../../flowers_DB/addAdmin.php')
-                // fetch('./test.php')
-                // .then(function(response) {
-                // return response.json();
-                // })
-                // .then(function(res) {
-                // //console.log(res);
-                // alert(res);
-                // });
-                // // alert(this.email);
             }
         }
     }

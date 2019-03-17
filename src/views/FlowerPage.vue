@@ -29,7 +29,7 @@
             <input type="file" name="itemImg" accept="image/*" @change="imgUp">
 
            <button id="button" @click="updateItemAlert=false">Cancel</button>
-           <button id="button" @click="" >Update</button>
+           <button id="button" @click="updateFlower" >Update</button>
     </div>
     <div class="alerts" id="form" v-if="deleteItemAlert">
         <h4> Are you sure you want to delete this item?</h4>
@@ -57,7 +57,7 @@
           <textarea id="reviewInp" name="review" rows="10" cols="">Add a review
           </textarea>
 
-          <button id="button" @click="updateItemAlert=true">
+          <button id="button" @click="updateFlowerPrompt(m.flower_id)">
                 Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
           </button>
           <button id="button" @click="deleteFlowerPrompt(m.flower_id)">
@@ -103,6 +103,7 @@
             updateItemAlert: false,
             deleteItemAlert: false,
             flowerIdToDelete:0,
+            flowerIdToUpdate:0,
                }
         },
         mounted(){
@@ -156,9 +157,6 @@
             imgUp:function(event){
               this.dImg=event;
             },
-            updateFlower:function(x){
-              alert(x);
-            },
             deleteFlower:function(){
               //Delete the flower with flowerid set to floweridtodelete
               console.log("ck start", this.compKey);
@@ -183,8 +181,6 @@
               }).catch( error => { console.log(error); });
 
               //update the flower page with the database without the deleted flower
-
-
               console.log("yaaww", this.flowerIdToDelete, this.compKey);
 
             },
@@ -198,10 +194,18 @@
               console.log("yeeet", this.flowerIdToDelete);
 
             },
-            addflower:function(){
-              //After form submit, post flower info to database
+            updateFlowerPrompt:function(x){
+              //Open Delete dialogue and set floweridtodelete
+              //take the flower id from the post and set up a variable
+              this.flowerIdToUpdate = x;
+              // Open are you sure to delete dialogue
+              this.updateItemAlert=true;
+            },
+            updateFlower:function(){
+              //After form submit, update flower in the DATABASE
+              //start loading screen
               this.loading = true;
-
+              this.updateItemAlert=false;
               //concat date
               var nd = new Date();
               var curDay = nd.getDate();
@@ -217,13 +221,14 @@
                 this.loading = false;
                 return;
               }else{
-                //concat price
                 this.price = this.pDollar+"."+this.pCents;
                 parseFloat(this.price);
               }
 
               var formData = new FormData();
 
+              //include flowerid for updating a specific flower in the database
+              formData.append('flowerid', this.flowerIdToUpdate)
               formData.append('type', this.type)
               formData.append('itemName', this.flowerName)
               formData.append('price', this.price)
@@ -231,7 +236,7 @@
               //formData.append('img', this.dImg)
               formData.append('dateadded', this.dateAdd)
 
-              fetch('https://coderoses-db.herokuapp.com/postFlower.php', {
+              fetch('https://coderoses-db.herokuapp.com/updateFlower.php', {
                 method: "POST",
                 body: formData
               })
@@ -243,7 +248,7 @@
                 //this.compKey++;
                 this.getFlower();
                 //alert("Flower Added")
-
+                alert("Flower Update Successful");
                 // this.$router.push("FlowerPage");
               }).catch( error => {
                 this.loading = false;
