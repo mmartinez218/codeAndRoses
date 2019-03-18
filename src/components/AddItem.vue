@@ -31,7 +31,7 @@
             <input type="file" name="itemImg" accept="image/*" @change="imgUp">
 
            <button id="button" @click="addflower">Submit</button>
-           <button id="button" @click="theDate">chckArray</button>
+           <button id="button" @click="clearLS">chckLS</button>
       </div>
     </div>
 </template>
@@ -114,15 +114,11 @@
             //
             //   }).catch( error => { console.log(error); });
             // },
-            theDate:function(){
-              // alert(this.pDollar);
-              for(var x=0;x<this.dFlowers[0].length;x++){
-                console.log(this.dFlowers[0][x].name);
-                console.log(this.dFlowers[0][x].dateadded);
-                console.log(this.dFlowers[0][x].description);
-                console.log(this.dFlowers[0][x].price);
-                console.log(this.dFlowers[0][x].type);
-              }
+            clearLS:function(){
+              console.log(localStorage.userName, localStorage.loggedIn);
+              localStorage.userName = "";
+              localStorage.loggedIn = false;
+              console.log(localStorage.userName, localStorage.loggedIn);
             },
             imgUp:function(event){
               this.dImg=event;

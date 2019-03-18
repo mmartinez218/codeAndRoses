@@ -1,21 +1,80 @@
 <template>
-  <div id="form" >
-      <h2> Login</h2>
-        <form>
-            <p id="formHeading">Email: </p>
-            <input type="email" v-model="message" placeholder="Email" name="email">
+  <div>
+    <div v-if="loading" id="app">
+       <h3>Loading</h3>
+       <div style="text-align: center">
+         <cube-spin></cube-spin>
+       </div>
+     </div>
+    <div v-if="!loading">
+    <div id="form" >
+        <h2> Login</h2>
+              <p id="formHeading">Email: </p>
+              <input type="email" v-model="email" placeholder="Email" name="email">
 
-            <p id="formHeading">Password: </p>
-            <input type="password" v-model="message" placeholder="Choose a password" name="password">
+              <p id="formHeading">Password: </p>
+              <input type="password" v-model="pass" placeholder="Choose a password" name="password">
 
-            <button id="button" @click="submit">Login</button>
-            <button id="button" @click="cancel">Cancel</button>
-        </form>
-        <router-link 
-            to="/adminLogin">Admin Login</router-link> 
+              <button id="button" @click="login">Login</button>
+              <button id="button" @click="">Cancel</button>
 
+          <router-link
+              to="/adminLogin">Admin Login</router-link>
+
+      </div>
+    </div>
     </div>
 </template>
+<script>
+import CubeSpin from 'vue-loading-spinner/src/components/Circle'
+export default{
+  components: {
+    CubeSpin
+  },
+
+    name:"Login",
+    data(){
+        return{
+            email: null,
+            pass: null,
+            loading:false,
+            userName:"",
+            loggedIn:false,
+        }
+    },
+    methods:{
+        login:function(){
+          //Asynchronous function to take user input
+          //start loading screen
+          this.loading = true;
+          //start fetch
+          var formData = new FormData();
+
+          formData.append('email', this.email);
+          formData.append('password', this.pass);
+
+          console.log(this.email, this.pass);
+
+          fetch('https://coderoses-db.herokuapp.com/selectUser.php', {
+            method: "POST",
+            body: formData
+          })
+          .then((response) => {
+            return response.json()
+          })
+          .then ((data) => {
+            localStorage.userName = data.name;
+            localStorage.loggedIn = true;
+            this.loading = false;
+            this.$router.push("home");
+          }).catch( error => {
+            alert(error);
+            this.loading = false;
+          });
+        }
+    }
+}
+</script>
 <style>
 #form{
     margin: auto;

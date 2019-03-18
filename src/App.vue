@@ -6,28 +6,29 @@
     <h1>Code & Roses</h1>
     <div id="navBar">
       <router-link id="nav" to="/home">Code & Roses</router-link>
-      <router-link id="nav" to="/SignUp">Sign Up</router-link> 
-      <router-link id="nav" to="/Login">Login</router-link>
-        
-      <router-link 
+      <router-link id="nav" to="/SignUp" v-if="userLoggedIn == false">Sign Up</router-link>
+      <router-link id="nav" to="/Login" v-if="userLoggedIn == false">Login</router-link>
+      <button id="nav" v-if="userLoggedIn == true" @click="logout">Logout</button>
+
+      <router-link
             id="nav"
             class="dropMenu"
-            to="/FlowerPage">Catalogue</router-link> 
-        
+            to="/FlowerPage">Catalogue</router-link>
+
       <div id="subMenu">
-          <router-link 
-            class="subNav" 
-            to="/Bouquets">Bouquets</router-link> 
+          <router-link
+            class="subNav"
+            to="/Bouquets">Bouquets</router-link>
 
-          <router-link 
-            class="subNav" 
-            to="/VaseArrangements">Arrangements</router-link> 
+          <router-link
+            class="subNav"
+            to="/VaseArrangements">Arrangements</router-link>
 
-          <router-link 
-            class="subNav" 
-            to="/Planters">Planters</router-link> 
+          <router-link
+            class="subNav"
+            to="/Planters">Planters</router-link>
       </div>
-        
+
       <router-link id="nav" to="/About">About Us</router-link>
       <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
@@ -35,17 +36,41 @@
    <div id="rView">
         <router-view/>
    </div>
-      
+
    <div id="footer">
       <router-link id="nav" to="/">Code & Roses</router-link>
-      <router-link id="nav" to="/SignUp">Sign Up</router-link> 
-      r<router-link id="nav" to="/FlowerPage">Catalogue</router-link>  
+      <router-link id="nav" to="/SignUp">Sign Up</router-link>
+      r<router-link id="nav" to="/FlowerPage">Catalogue</router-link>
       <router-link id="nav" to="/About">Cart</router-link>
    </div>
   </div>
 
 </template>
-
+<script>
+export default{
+  name:"App",
+  data(){
+    return{
+      userLoggedIn:false,
+    }
+  },
+  beforeMount(){
+    if(localStorage.loggedIn){
+      this.userLoggedIn=true
+    }
+  },
+  methods:{
+    logout:function(){
+      console.log(localStorage.userName, localStorage.loggedIn);
+      localStorage.userName = "";
+      localStorage.loggedIn = false;
+      this.userLoggedIn = false
+      console.log(localStorage.userName, localStorage.loggedIn);
+      this.$router.push("home");
+    }
+  },
+}
+</script>
 <style>
 #banner{
     background-color: red;
@@ -60,15 +85,15 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-    
+
 #bannerCon{
     background-color: white;
 }
-    
+
 #bannerDesc{
     text-align: center;
 }
-    
+
 #button{
     border: 2px solid #2E0A38;
     color: white;
@@ -85,7 +110,7 @@
     color: #2E0A38;
     background-color: white;
 }
-    
+
 #footer{
     z-index: 2;
     left: 0;
@@ -97,7 +122,7 @@
     width: 100%;
     margin-right: 4em;
 }
-    
+
 h1{
     color:white;
     font-size: 5em;
@@ -107,25 +132,25 @@ h1{
     justify-content: center;
     align-items: center;
 }
-    
+
 h2{
-    color:#2E0A38; 
+    color:#2E0A38;
     font-size: 3em;
     text-align: center;
 }
-    
+
 h3{
     text-align: center;
     font-size: 4em;
     margin: auto;
-}    
+}
 
 h4{
     text-align: center;
     font-size: 1.5em;
     margin: auto;
 }
-    
+
 #header{
     background-color: blue;
     z-index: 2;
@@ -145,7 +170,7 @@ h4{
     float: left;
     justify-content: center;
 }
-    
+
 #galleryBox{
     opacity: 0;
     background-color: brown;
@@ -168,7 +193,7 @@ h4{
 #galleryBox:hover{
     opacity: 1;
 }
-    
+
 .galleryCon{
     position: relative;
     display: flex;
@@ -183,8 +208,8 @@ h4{
     border-color: #F8EDFF;
     border-radius: 5px;
     align-items: center;
-}   
-    
+}
+
 .galleryImgs{
     position: relative;
     width: 100%;
@@ -192,13 +217,13 @@ h4{
     z-index: 1;
     border-style: solid;
     border-color: #2E0A38;
- 
+
 }
-    
+
 .galleryImgs:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
-    
+
 #map{
     width:50%;
     float: left;
@@ -207,7 +232,7 @@ h4{
 #money{
         width: 3em;
 }
- 
+
 #navBar {
     position:fixed;
     padding: 30px;
@@ -218,40 +243,40 @@ h4{
     font-family: 'Hind Vadodara', sans-serif;
     border: 2px solid #2E0A38;
 
-   /** 
+   /**
     background-color: yellow;
     **/
 }
-    
+
 #navBar a {
   color: #F8EDFF;
   position: relative;
   bottom: 0.5em;
   padding: 1.4em;
   text-decoration: none;
-    
+
 }
 /**
 #navBar a.router-link-exact-active {
-  color: #42b983;    
-} 
-   **/ 
+  color: #42b983;
+}
+   **/
 #nav:hover {
-  color: #2E0A38;    
+  color: #2E0A38;
   background-color: white;
-} 
-    
+}
+
 .price{
     font-weight: 600;
     text-align: center;
-    }    
+    }
 
 #rView{
     position:relative;
     top:15.6em;
     overflow: scroll;
 
-    
+
 }
 
 #subMenu{
@@ -272,17 +297,17 @@ h4{
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-    
+
 .subNav:hover{
     background-color: #2E0A38;
-    
+
 }
-    
+
 .dropMenu:hover .subNav{
     display: block;
-} 
+}
 
-    
+
 #title{
     text-align: center;
     font-size: 1.5em;
@@ -304,6 +329,6 @@ h4{
     margin-right: 2em;
     }
 
-    
+
 
 </style>

@@ -44,6 +44,8 @@
                 fname:null,
                 lname:null,
                 loading:false,
+                userName:"",
+                loggedIn:false,
             }
         },
         methods:{
@@ -73,7 +75,8 @@
                 //iF not create new user and route to flowerpage
                 if(data.status){
                   console.log("yeep");
-                  
+                  localStorage.userName = data.name;
+                  localStorage.loggedIn = true;
                   this.$router.push("FlowerPage");
                 }else{
                   console.log("yaawp");
