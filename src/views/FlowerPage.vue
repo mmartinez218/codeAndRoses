@@ -98,6 +98,7 @@
             dateAdd: "1999-01-01",
             adminId:1,
             dFlowers:[],
+            deFlowers:[],
             loading:false,
             compKey:0,
             updateItemAlert: false,
@@ -130,6 +131,9 @@
               console.log(dId);
               this.flowerIdToDelete = dId
             },
+            forceU:function(){
+              this.compKey +=1;
+            },
             getFlower:function(){
               console.log("getting flowers");
               this.loading = true;
@@ -143,13 +147,16 @@
               })
               .then((response) => {
                 this.loading = false;
-                return response.text()
+                return response.json()
               })
               .then ((data) => {
                 //check if there are flowers in the database
                 //add to array if there is
-                this.dFlowers.push(JSON.parse(data));
-                this.dFlowers = this.dFlowers;
+                this.dFlowers.push(data);
+                this.deFlowers = this.dFlowers
+                // this.dFlowers = this.dFlowers;
+                //this.$set(this.dFlowers, this.dFlowers.length, data)
+                console.log("yeetFP", this.glob);
                 // change key to attempt rerender
                 this.compKey++;
               }).catch( error => { console.log(error); });
@@ -177,6 +184,9 @@
               })
               .then ((data) => {
                 console.log(data);
+                //forceU();
+                //this.$forceUpdate();
+                this.getFlower();
                 //this.$router.push("FlowerPage");
               }).catch( error => { console.log(error); });
 

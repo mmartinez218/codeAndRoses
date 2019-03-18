@@ -66,7 +66,7 @@
         },
         mounted(){
           //Grab flowers from database when loading the page
-          this.getFlower();
+          //this.getFlower();
           console.log("MOUNTadditem");
         },
 
@@ -87,31 +87,33 @@
               console.log(dId);
               this.flowerIdToDelete = dId
             },
-            getFlower:function(){
-              this.loading = true;
-              var formData = new FormData();
-
-              formData.append('adminnum', this.adminId);
-
-              fetch('https://coderoses-db.herokuapp.com/selectFlower.php', {
-                method: "POST",
-                body: formData
-              })
-              .then((response) => {
-                this.loading = false;
-                return response.text()
-              })
-              .then ((data) => {
-                //check if there are flowers in the database
-                //add to array if there is
-                //this.dFlowers.push(JSON.parse(data));
-                this.$set(this.dFlowers, this.flowerArr.length, JSON.parse(data))
-                //this.dFlowers = this.dFlowers;
-                console.log(this.dFlowers);
-                console.log("yeeet");
-
-              }).catch( error => { console.log(error); });
-            },
+            // getFlower:function(){
+            //   this.loading = true;
+            //   var formData = new FormData();
+            //
+            //   formData.append('adminnum', this.adminId);
+            //
+            //   fetch('https://coderoses-db.herokuapp.com/selectFlower.php', {
+            //     method: "POST",
+            //     body: formData
+            //   })
+            //   .then((response) => {
+            //     this.loading = false;
+            //     return response.json()
+            //   })
+            //   .then ((data) => {
+            //     //check if there are flowers in the database
+            //     //add to array if there is
+            //     //this.$set(this.dFlowers, this.flowerArr.length, data)
+            //     //this.$forceUpdate();
+            //     this.dFlowers.push(data);
+            //     this.dFlowers = this.dFlowers;
+            //
+            //     console.log(this.dFlowers);
+            //     console.log("yeeetAI");
+            //
+            //   }).catch( error => { console.log(error); });
+            // },
             theDate:function(){
               // alert(this.pDollar);
               for(var x=0;x<this.dFlowers[0].length;x++){
@@ -126,7 +128,6 @@
               this.dImg=event;
             },
             addflower:function(){
-              console.log("asd0");
               //After form submit, post flower info to database
               this.loading = true;
 
@@ -173,12 +174,14 @@
                 return response.text()
               })
               .then ((data) => {
-                this.flowerArr = this.dFlowers.length;
-                this.dFlowers = [];
-                this.getFlower();
+                // this.flowerArr = this.dFlowers.length;
+                // this.dFlowers = [];
+                // this.getFlower();
+                data?this.$router.push("FlowerPage"):alert("false");
                 //alert("Flower Added")
                 //this.$set(this.dFlowers)
-                console.log("asd1", this.flowerArr);
+                this.$forceUpdate();
+                console.log("yeet11");
                 // this.$router.push("FlowerPage");
               }).catch( error => {
                 this.loading = false;

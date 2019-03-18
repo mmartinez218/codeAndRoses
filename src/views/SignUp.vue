@@ -73,6 +73,7 @@
                 //iF not create new user and route to flowerpage
                 if(data.status){
                   console.log("yeep");
+                  
                   this.$router.push("FlowerPage");
                 }else{
                   console.log("yaawp");
