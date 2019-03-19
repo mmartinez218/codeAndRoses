@@ -39,7 +39,7 @@
 
             <p id="formHeading">Review: </p>
 
-          <textarea id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
+          <textarea id="reviewInp" style="margin-right:10px" name="review" rows="10" cols="10" v-model="rev">Add a review
           </textarea>
 
            <button id="button" @click="reviewAlert=false">Cancel</button>
@@ -339,6 +339,7 @@ body, buttons {
     
 .alerts{
     position: fixed;
+    top: 150px;
     background-color: white;
     z-index: 5;
 }
@@ -387,13 +388,14 @@ body, buttons {
     display: block;
     opacity: 1;
     height: 40vh;
-    border-color: 50px solid #2E0A38;
+    margin-bottom: 10px;
+    border: 5px solid #F8EDFF;
 
 
 }
 #reviewInp{
     height: 100px;
-    width: 60vw;
+    width: 43vw;
 }
     
     textarea {
@@ -415,7 +417,6 @@ body, buttons {
         bottom: 0;
         color: white;
         background-color: #2E0A38;
-        border-color: 50px solid #2E0A38;
         padding: 15px;
         border-radius: 5px;
         display: flex;
@@ -448,7 +449,6 @@ body, buttons {
     margin: 0.8em 0.8em 0.8em 0;
     padding: 10px;
     align-items: center;
-    border-radius: 5px;
     box-shadow: 1px 2px #2E0A38;
     }
 
