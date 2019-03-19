@@ -113,19 +113,19 @@ export default{
 
 #button{
     border: 2px solid #2E0A38;
-    color: white;
+    color: #2E0A38;
     font-size: 15px;
     width: auto;
     height: auto;
     border-radius: 2px;
-    background-color: #2E0A38;
+    background-color: white;
     margin: 0.8em 0.8em 0.8em 0;
     padding: 0.2em 0.5em 0.2em 0.5em ;
 }
 
 #button:hover {
-    color: #2E0A38;
-    background-color: white;
+    color: white;
+    background-color: #2E0A38;
 }
 
 #footer{

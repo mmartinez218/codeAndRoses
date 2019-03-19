@@ -37,7 +37,7 @@
 
             <p id="formHeading">Review: </p>
 
-          <textarea id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
+          <textarea style="width:95%;" id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
           </textarea>
 
            <button id="button" @click="reviewAlert=false">Cancel</button>
@@ -62,7 +62,7 @@
           </p>
           <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="itemImgs"/>
           <div id="itemBox">
-            {{m.type}}
+            {{m.type}} <br/>
             {{m.dateadded}}<br/>
             {{m.description}}<br/>
             ${{m.price}}<br/><br/>
@@ -359,6 +359,7 @@
     top: 0;
     opacity: 1;
     float: left;
+    margin-left: 2%;
     margin-right: 3%;
     margin-bottom: 3%;
     color: #2E0A38;
@@ -373,8 +374,9 @@
     display: block;
     opacity: 1;
     height: 40vh;
-    background-color: red;
-    border-color: 50px solid #2E0A38;
+    margin-bottom: 15px;
+    background-color: white;
+    border: 5px solid #F8EDFF;
 
 
 }
