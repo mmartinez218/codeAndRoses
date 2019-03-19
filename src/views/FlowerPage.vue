@@ -64,7 +64,7 @@
           </p>
           <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="itemImgs"/>
           <div id="itemBox">
-            {{m.type}}
+            {{m.type}} <br/>
             {{m.dateadded}}<br/>
             {{m.description}}<br/>
             ${{m.price}}<br/><br/>
