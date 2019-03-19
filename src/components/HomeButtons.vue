@@ -10,7 +10,7 @@
     </button>
     </div>
 </template>
-<button v-else @click="logout">Logout</button>
+<button id="button" v-else @click="logout">Logout</button>
 </div>
 </template>
 <script>
