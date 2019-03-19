@@ -12,13 +12,13 @@
 
             <p id="formHeading">Message: </p>
 
-             <textarea name="description" rows="5" cols="30" v-model="desc">
+             <textarea name="description" rows="5" v-model="desc">
             </textarea>
 
-           
-
-            <button id="button" @click="">Send</button>
-            <button id="button" @click="">Cancel</button>
+           <div id="box">
+                <button id="button" @click="">Send</button>
+                <button id="button" @click="">Cancel</button>
+            </div>
         </form>
 
     </div>
@@ -71,30 +71,21 @@
 <style>
 #form{
     margin: auto;
-    width: 11em;
-    height: auto;
-    width: 31em;
     border-style: solid;
     border-color: #F8EDFF;
     border-radius: 5px;
-    padding: 1.5em 2em 1.5em 4.5em;
+
 }
 
 form{
-    width: 11em;
+    width: 500px;
     height: auto;
 }
 #formHeading{
     font-size: 1.1em;
     color:#2E0A38;
     margin-bottom: 0.5em;
-    font-family: 'Hind Vadodara', sans-serif;
-}
-
-input{
-    height: 2em;
-    width: 30em;
-    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input:hover{
@@ -104,4 +95,38 @@ input:hover{
 input:focus{
     border-color: #2E0A38;
 }
+    
+input {
+  max-width: 465px;
+  border-radius: 12.5px;
+  border-color: #2E0A38;
+  left: -300px;
+  padding-left: 20px;
+  margin: 10px;
+    }
+    
+    textarea {
+        width: 700px;
+        border-radius: 20px;
+        border-color: #2E0A38;
+    }
+    
+    buttons {
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        display: inline-block;
+    }
+    
+    #box {
+        margin-top: 50px;
+        height: 80px;
+        width: auto;
+        left: 50%;
+        align-items: center;
+    }
+  
 </style>

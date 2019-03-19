@@ -1,6 +1,6 @@
 <template >
   <div class="home">
-      <h2>Our top Specialty </h2>
+      <h2>Our Floral Categories</h2>
   <HelloWorld/>
   </div>
 </template>
@@ -18,7 +18,5 @@ export default {
 }
 </script>
 <style>
-    HelloWorld{
-        color:red;
-    }
+
 </style>

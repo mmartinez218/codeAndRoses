@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <h2></h2>
-    <button @click="ChangeAddItem" id="button" > Add Item</button>
+    <div id="box">
+        <button @click="ChangeAddItem" id="buttonAddItem" > Add New Product</button>
+    </div>
     <div v-if="page===1">
         <AddItemsV/>
      </div>
@@ -37,7 +39,7 @@
 
             <p id="formHeading">Review: </p>
 
-          <textarea style="width:95%;" id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
+          <textarea id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
           </textarea>
 
            <button id="button" @click="reviewAlert=false">Cancel</button>
@@ -62,21 +64,21 @@
           </p>
           <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="itemImgs"/>
           <div id="itemBox">
-            {{m.type}} <br/>
+            {{m.type}}
             {{m.dateadded}}<br/>
             {{m.description}}<br/>
             ${{m.price}}<br/><br/>
           </div>
 
-          <button id="button" @click="updateFlowerPrompt(m.flower_id)">
-                Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
+          <button id="buttonUpdate" @click="updateFlowerPrompt(m.flower_id)">
+                Update {{ updateItemAlert ? visible : hidden }}
           </button>
           <button id="button" @click="deleteFlowerPrompt(m.flower_id)">
-                Delete ({{ deleteItemAlert ? 'visible': 'hidden' }})
+                Delete {{ deleteItemAlert ? visible: hidden }}
           </button>
 
           <button id="button" @click="reviewBox(m.flower_id)">
-                Add Review ({{ updateItemAlert ? 'visible': 'hidden'}})
+                Add Review ({{ updateItemAlert ? visible: hidden}})
           </button>
         </div>
      </div>
@@ -322,6 +324,17 @@
 </script>
 
 <style>
+    
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+    
+body, buttons {
+    font-family: 'Montserrat', sans-serif;
+    }
+    
+    h2 {
+        font-size: 2em;
+    }
+    
 .alerts{
     position: fixed;
     background-color: white;
@@ -332,7 +345,6 @@
     top: 10%;
 }
 #editItem{
-    border-color: red;
     position: absolute;
     margin: auto;
     z-index: 2;
@@ -359,7 +371,6 @@
     top: 0;
     opacity: 1;
     float: left;
-    margin-left: 2%;
     margin-right: 3%;
     margin-bottom: 3%;
     color: #2E0A38;
@@ -374,9 +385,7 @@
     display: block;
     opacity: 1;
     height: 40vh;
-    margin-bottom: 15px;
-    background-color: white;
-    border: 5px solid #F8EDFF;
+    border-color: 50px solid #2E0A38;
 
 
 }
@@ -384,5 +393,61 @@
     height: 100px;
     width: 60vw;
 }
+    
+    textarea {
+        max-width: 500px;
+    }
+    
+    #formHeading {
+        font-size: 1.6em;
+    }
+    
+    #buttonAddItem {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5em;
+        position: relative;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: white;
+        background-color: #2E0A38;
+        border-color: 50px solid #2E0A38;
+        padding: 15px;
+        border-radius: 20px;
+        display: flex;
+    }
+    
+    #buttonAddItem:hover {
+        border-color: #2E0A38;
+        color: #2E0A38;
+        background-color: white;
+        box-shadow: 1px 2px #2E0A38;
+    }
+    
+    #box {
+        margin-top: 50px;
+        height: 80px;
+        width: 100%;
+        align-content: center;
+        align-items: center;
+    }
+    
+    #buttonUpdate {
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #2E0A38;
+    color: white;
+    font-size: 15px;
+    width: auto;
+    height: auto;
+    border-radius: 2px;
+    background-color: #2E0A38;
+    margin: 0.8em 0.8em 0.8em 0;
+    padding: 10px;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 1px 2px #2E0A38;
+    }
 
 </style>

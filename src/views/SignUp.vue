@@ -44,8 +44,6 @@
                 fname:null,
                 lname:null,
                 loading:false,
-                userName:"",
-                loggedIn:false,
             }
         },
         methods:{
@@ -75,8 +73,7 @@
                 //iF not create new user and route to flowerpage
                 if(data.status){
                   console.log("yeep");
-                  localStorage.userName = data.name;
-                  localStorage.loggedIn = true;
+                  
                   this.$router.push("FlowerPage");
                 }else{
                   console.log("yaawp");
@@ -108,7 +105,7 @@ form{
     font-size: 1.1em;
     color:#2E0A38;
     margin-bottom: 0.5em;
-    font-family: 'Hind Vadodara', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input{

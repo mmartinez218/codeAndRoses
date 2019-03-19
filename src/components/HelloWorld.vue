@@ -7,9 +7,9 @@
                 <div id="galleryCaption">
                 Flower bouquets are often given for special occasions
                 </div><br/>
-                 <button @click="ChangeAddItem" id="button"> See the full collection</button>
+                 <button @click="ChangeAddItem" id="button">View Collection</button>
             </div>
-            <img src="../imgs/e630e5aba6313f6472dd9ae263b20e88_23.jpg" class="galleryImgs"/>
+            <img src="../imgs/standardBouquet.jpg" id="bouquets" class="imgs"/>
         </div> 
         
         <div class="galleryCon">
@@ -18,9 +18,9 @@
                 <div id="galleryCaption">
                     Flower arrangements are an important part of the ambience on any occasion. Arrangements come in glass vases and are bigger than Bouquet
                 </div><br/>
-                <button @click="ChangeAddItem" id="button">See the full collection</button>
+                <button @click="ChangeAddItem" id="button">View Collection</button>
             </div>
-            <img src="../imgs/0000355_exquisite-flower-bouquet-with-red-roses-white-oriental-lilies-and-greenery_550.jpeg" class="galleryImgs"/>
+            <img src="../imgs/standardArrangement.jpg" class="imgs" id="arrangements"/>
         </div>  
         
         <div class="galleryCon">
@@ -31,12 +31,10 @@
                 </div><br/>
                 <button @click="ChangeAddItem" id="button">See the full collection</button>
              </div>
-                <img src="../imgs/lethal-combination-standard_1.jpg" class="galleryImgs"/>
+                <img src="../imgs/standardPlanter.jpg" class="imgs" id="planters"/>
         </div>   
         
     </div> 
-      add an about button on the nav<br>    
-    and a contact buton<br> 
        <div id="banner">
         <div id="bannerCon">
             <h3> Shop for any occasion!</h3>
@@ -58,6 +56,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    
+    body {
+      font-family: 'Montserrat', sans-serif;  
+    }
+    
 h3 {
   margin: 40px 0 0;
 }
@@ -72,4 +77,36 @@ li {
 a {
   color: #42b983;
 }
+    #bouquets {
+        transform: rotate(90deg);
+        max-width: 550px;
+        width: 100%;
+        min-width: 300px;
+    }
+    
+    #arrangements {
+        max-width: 550px;
+        width: 100%;
+        height: auto;
+        max-height: 550px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    
+    #planters {
+        max-height: 550px;
+        min-width: 300px;
+        min-height: 300px;
+        width: 100%;
+    }
+    
+    .imgs {
+        position: relative;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: inline-block;
+    }
 </style>

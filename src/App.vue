@@ -3,92 +3,67 @@
 <template>
 <div id="homePage">
   <div id="header">
-    <h1>Code & Roses</h1>
+    <h1>Code &amp; Roses</h1>
+  </div>
     <div id="navBar">
-      <router-link id="nav" to="/home">Code & Roses</router-link>
-      <template v-if="userLoggedIn == false">
-        <router-link id="nav" to="/SignUp">Sign Up</router-link>
-        <router-link id="nav" to="/Login">Login</router-link>
-      </template>
-      <!-- <router-link id="nav" to="/Login" v-if="userLoggedIn == true">Logout</router-link>
-      <button v-if="userLoggedIn == false" @click="signup">Sign Up</button>
-      <button v-if="userLoggedIn == false" @click="login">Login</button> -->
-      <button v-else @click="logout">Logout</button>
-
-      <router-link
+      <router-link id="nav" to="/home">Code &amp; Roses</router-link>
+      <router-link id="nav" to="/SignUp">Sign Up</router-link> 
+      <router-link id="nav" to="/Login">Login</router-link>
+        
+      <router-link 
             id="nav"
             class="dropMenu"
-            to="/FlowerPage">Catalogue</router-link>
-
+            to="/FlowerPage">Catalogue</router-link> 
+        
       <div id="subMenu">
-          <router-link
-            class="subNav"
-            to="/Bouquets">Bouquets</router-link>
+          <router-link 
+            class="subNav" 
+            to="/Bouquets">Bouquets</router-link> 
 
-          <router-link
-            class="subNav"
-            to="/VaseArrangements">Arrangements</router-link>
+          <router-link 
+            class="subNav" 
+            to="/VaseArrangements">Arrangements</router-link> 
 
-          <router-link
-            class="subNav"
-            to="/Planters">Planters</router-link>
+          <router-link 
+            class="subNav" 
+            to="/Planters">Planters</router-link> 
       </div>
-
+        
       <router-link id="nav" to="/About">About Us</router-link>
       <router-link id="nav" to="/Contact">Contact Us</router-link>
     </div>
-   </div>
+    
+    <div id="block"></div>
+   
    <div id="rView">
         <router-view/>
    </div>
-
+      
    <div id="footer">
-      <router-link id="nav" to="/">Code & Roses</router-link>
-      <router-link id="nav" to="/SignUp">Sign Up</router-link>
-      r<router-link id="nav" to="/FlowerPage">Catalogue</router-link>
-      <router-link id="nav" to="/About">Cart</router-link>
+      <router-link id="navfooter" to="/"> Code &amp; Roses </router-link>
+      <router-link id="navfooter" to="/SignUp"> Sign Up </router-link> 
+      <router-link id="navfooter" to="/FlowerPage"> Catalogue </router-link>  
+      <router-link id="navfooter" to="/About"> Cart </router-link>
+       <br>
+       <p>Copyright Code &amp; Roses</p>
    </div>
   </div>
 
 </template>
-<script>
-export default{
-  name:"App",
-  data(){
-    return{
-      userLoggedIn:false,
-    }
-  },
-  beforeMount(){
-    console.log(localStorage.loggedIn, "yeetApp.vue");
-    if(localStorage.loggedIn == "true"){
-      this.userLoggedIn=true;
-      console.log("yeet");
-    }else{
-      this.userLoggedIn=false;
-      console.log("yaw");
-    }
-  },
-  methods:{
-    login:function(){
-      this.$router.push("Login");
-    },
-    signup:function(){
-      this.$router.push("SignUp");
-    },
-    logout:function(){
-      console.log(localStorage.userName, localStorage.loggedIn);
-      localStorage.userName = "";
-      localStorage.loggedIn = false;
-      this.userLoggedIn = false
-      console.log(localStorage.userName, localStorage.loggedIn);
-      this.$router.push("home");
-      // return false;
-    }
-  },
-}
-</script>
+
 <style>
+    
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+    
+    buttons {
+       font-family: 'Montserrat', sans-serif;
+    }
+    
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    
 #banner{
     background-color: red;
     width: auto;
@@ -102,74 +77,86 @@ export default{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+    
 #bannerCon{
     background-color: white;
 }
-
+    
 #bannerDesc{
     text-align: center;
 }
-
+    
 #button{
+    font-family: 'Montserrat', sans-serif;
     border: 2px solid #2E0A38;
-    color: #2E0A38;
+    color: white;
     font-size: 15px;
     width: auto;
     height: auto;
     border-radius: 2px;
-    background-color: white;
+    background-color: #2E0A38;
     margin: 0.8em 0.8em 0.8em 0;
-    padding: 0.2em 0.5em 0.2em 0.5em ;
+    padding: 10px;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 1px 2px #2E0A38;
 }
 
 #button:hover {
-    color: white;
-    background-color: #2E0A38;
+    color: #2E0A38;
+    background-color: white;
 }
-
+    
 #footer{
     z-index: 2;
     left: 0;
     font-size: 0.8em;
     position: fixed;
-    top: 95vh;
+    bottom: 0;
     background-color:#2E0A38;
-    height: 3em;
+    height: 3.5em;
     width: 100%;
-    margin-right: 4em;
+    text-align: center;
+    padding-top: 10px;
+    font-family: 'Source Code Pro', monospace;
 }
-
+    
 h1{
     color:white;
-    font-size: 5em;
-    font-family: 'Cormorant', serif;
-    font-weight: 50;
+    font-size: 7em;
+    /*font-family: 'Cormorant', serif; *alternative font* */ 
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 10;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+    
 h2{
-    color:#2E0A38;
+    color:#2E0A38; 
     font-size: 3em;
     text-align: center;
 }
-
+    
 h3{
     text-align: center;
     font-size: 4em;
     margin: auto;
-}
+}    
 
 h4{
     text-align: center;
     font-size: 1.5em;
     margin: auto;
 }
-
+    
+    p {
+        font-family: 'Source Code Pro', monospace;
+        color: white;
+    }
+    
 #header{
-    background-color: blue;
+    background-color: white;
     z-index: 2;
     position:fixed;
     top: 0;
@@ -187,11 +174,11 @@ h4{
     float: left;
     justify-content: center;
 }
-
+    
 #galleryBox{
     opacity: 0;
     background-color: brown;
-    margin-top: 7em;
+    margin-top: 40%;
     padding: 1.5em;
     width: 62%;
     height: 45%;
@@ -210,23 +197,24 @@ h4{
 #galleryBox:hover{
     opacity: 1;
 }
-
+    
 .galleryCon{
     position: relative;
     display: flex;
     flex-direction: column;
    /* background-color:green;*/
-    width: 17em;
+    width: 600px;
     height: auto;
     margin: 0em 3em 0em 3em;
-    padding: 0em 1em 5% 1em;
+    padding: 0em 1em 0em 1em;
     z-index: 1;
     border-style: solid;
     border-color: #F8EDFF;
     border-radius: 5px;
     align-items: center;
-}
-
+    font-size: 1.5em;
+}   
+    
 .galleryImgs{
     position: relative;
     width: 100%;
@@ -234,13 +222,13 @@ h4{
     z-index: 1;
     border-style: solid;
     border-color: #2E0A38;
-
+ 
 }
-
+    
 .galleryImgs:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
-
+    
 #map{
     width:50%;
     float: left;
@@ -249,51 +237,66 @@ h4{
 #money{
         width: 3em;
 }
-
+ 
 #navBar {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.5em;
+    text-align: center;
     position:fixed;
-    padding: 30px;
     background-color:#2E0A38;
-    height: 0.1em;
+    height: 2em;
+    padding-top: 0.7em;
     width: 100%;
-    top: 13em;
-    font-family: 'Hind Vadodara', sans-serif;
-    border: 2px solid #2E0A38;
+    top: 9.5em;
+    left: 0;
+    /*font-family: 'Hind Vadodara', sans-serif;*/
+    z-index: 2;
 
-   /**
+   /** 
     background-color: yellow;
     **/
 }
-
+    
 #navBar a {
   color: #F8EDFF;
-  position: relative;
-  bottom: 0.5em;
-  padding: 1.4em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
   text-decoration: none;
-
+    
 }
 /**
 #navBar a.router-link-exact-active {
-  color: #42b983;
-}
-   **/
+  color: #42b983;    
+} 
+   **/ 
 #nav:hover {
-  color: #2E0A38;
+  color: #2E0A38;    
   background-color: white;
-}
-
+} 
+    
+#navfooter:hover {
+  color: #2E0A38;    
+  background-color: white;
+} 
+    
+    #navfooter {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+    
 .price{
     font-weight: 600;
     text-align: center;
-    }
+    }    
 
 #rView{
     position:relative;
     top:15.6em;
     overflow: scroll;
 
-
+    
 }
 
 #subMenu{
@@ -314,17 +317,17 @@ h4{
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-
+    
 .subNav:hover{
     background-color: #2E0A38;
-
+    
 }
-
+    
 .dropMenu:hover .subNav{
     display: block;
-}
+} 
 
-
+    
 #title{
     text-align: center;
     font-size: 1.5em;
@@ -337,7 +340,7 @@ h4{
 #indDescription{
     font-size: 1em;
     color: #2E0A38;
-    font-family: 'Hind Vadodara', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin-bottom: 1em;
 }
 #indImg{
@@ -345,7 +348,10 @@ h4{
     float: left;
     margin-right: 2em;
     }
-
-
+    #block {
+        height: 80px;
+        width: 100%;
+    }
+    
 
 </style>
