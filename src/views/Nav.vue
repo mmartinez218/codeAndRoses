@@ -5,6 +5,31 @@
   <div id="header">
     <h1>Code &amp; Roses</h1>
   </div>
+    <div id="navBar">
+      <router-link id="nav" to="/home">Code &amp; Roses</router-link>
+        
+      <router-link 
+            id="nav"
+            class="dropMenu"
+         to="/FlowerPage">Catalogue</router-link> 
+        
+      <div id="subMenu">
+          <router-link 
+            class="subNav" 
+            to="/Bouquets">Bouquets</router-link> 
+
+          <router-link 
+            class="subNav" 
+            to="/VaseArrangements">Arrangements</router-link> 
+
+          <router-link 
+            class="subNav" 
+            to="/Planters">Planters</router-link> 
+      </div>
+        
+      <router-link id="nav" to="/About">About Us</router-link>
+      <router-link id="nav" to="/Contact">Contact Us</router-link>
+    </div>
     
     <div id="block"></div>
    
@@ -13,7 +38,8 @@
    </div>
       
    <div id="footer">
-      <router-link id="navfooter" to="/Home"> Home </router-link>
+      <router-link id="navfooter" to="/"> Code &amp; Roses </router-link>
+      <router-link id="navfooter" to="/SignUp"> Sign Up </router-link> 
       <router-link id="navfooter" to="/FlowerPage"> Catalogue </router-link>  
       <router-link id="navfooter" to="/About"> Cart </router-link>
        <br>
@@ -45,17 +71,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: url("./imgs/colorful-dream-wallpaper-flower-wallpaper-5a9d848eeb97de0036179d40.jpg");
+    background-image: url("../imgs/colorful-dream-wallpaper-flower-wallpaper-5a9d848eeb97de0036179d40.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.9;
 }
     
 #bannerCon{
     background-color: white;
-    color: #2E0A38;
-    opacity: 0.95;
-
 }
     
 #bannerDesc{
@@ -145,20 +167,17 @@ h4{
     top: 0;
     left: 0;
     width: 100%;
-    height: 18em;
-    background-image:url(./imgs/misy-blossoms-desktopnexus-flower-wallpaper-5a9d7a928e1b6e003666eadc.jpg);
+    height: 13em;
+    background-image:url(../imgs/misy-blossoms-desktopnexus-flower-wallpaper-5a9d7a928e1b6e003666eadc.jpg);
     background-size: 100% auto;
     background-position:bottom;
 }
 .homeGallery{
     width: 100%;
     height: auto;
-    display: inline-flex;
+    display: flex;
+    float: left;
     justify-content: center;
-    overflow-y: scroll; 
-    overflow-x:hidden;
-
-
 }
     
 #galleryBox{
@@ -233,7 +252,7 @@ h4{
     height: 2em;
     padding-top: 0.7em;
     width: 100%;
-    top: 11.5em;
+    top: 9.5em;
     left: 0;
     /*font-family: 'Hind Vadodara', sans-serif;*/
     z-index: 2;

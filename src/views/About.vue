@@ -1,5 +1,6 @@
 <template>
     <div id="home">
+    <Navbar/>
     <div id="indProduct">
       <h2> About Us</h2>
         <iframe id="map"
@@ -20,3 +21,15 @@
     </div>
 
 </template>
+
+
+<script>
+import Navbar from '@/components/Navbar'
+
+export default {
+  components: {
+    Navbar
+  }
+}
+    
+</script>

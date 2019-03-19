@@ -29,19 +29,12 @@
                 <div id="galleryCaption">
                     A planter comes in pots made from plastic, wood, or stone. Pot selection will vary on seller. The soil in the planters will help your flowers live longer.                
                 </div><br/>
-                <button @click="ChangeAddItem" id="button">See the full collection</button>
+                <button @click="ChangeAddItem" id="button">View Collection</button>
              </div>
                 <img src="../imgs/standardPlanter.jpg" class="imgs" id="planters"/>
         </div>   
         
     </div> 
-       <div id="banner">
-        <div id="bannerCon">
-            <h3> Shop for any occasion!</h3>
-            <p id="bannerDesc">Check the catalogue for the our finest flowers also add a button bro</p>
-        </div>
-        
-    </div>
   </div>
 </template>
 
@@ -50,7 +43,25 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+    methods:{
+
+            ChangeGreetings:function(){
+                this.greetings = "lets begin";
+                this.store.globalTest = "something globally new";
+                this.glob = this.store.globalTest;
+            },
+            ChangeAddItem:function(){
+                this.page = 1;
+            },
+            ChangeRegister:function(){
+                this.page = 2;
+            },
+            flowerIdDel:function(dId){
+              console.log(dId);
+              this.flowerIdToDelete = dId
+            },
+}
 }
 </script>
 

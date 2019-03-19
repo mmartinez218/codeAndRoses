@@ -1,5 +1,6 @@
 <template>
-  <div id="form" >
+  <div id="form">
+      <Navbar/>
       <h2> Admin Login</h2>
         <form>
             <p id="formHeading">Email: </p>
@@ -9,17 +10,47 @@
             <input type="password" v-model="message" placeholder="Choose a password" name="password">
 
             <button id="button" @click="submit">Login</button>
-            <button id="button" @click="cancel">Cancel</button>
+            
+            <button id="button"> 
+        <router-link 
+            to="/Home">Cancel</router-link> 
+          </button>
+            
+            <button id="button"> 
+        <router-link 
+            to="/Login"> Regular User Login</router-link> 
+          </button>
+            
+        <br><br><br>
+            <div id="cc">
+            Don't have an account?
+            <button id="button"> 
+        <router-link 
+            to="/SignUp">Create an Account</router-link> 
+          </button>
+            </div>
         </form>
 
     </div>
 </template>
+
+<script>
+    import Navbar from '@/components/Navbar'
+
+    export default{
+        
+    components: {
+        Navbar
+      }
+    }
+</script>
+
 <style>
+    
 #form{
     margin: auto;
-    width: 11em;
-    height: auto;
     width: 31em;
+    height: auto;
     border-style: solid;
     border-color: #F8EDFF;
     border-radius: 5px;

@@ -31,7 +31,7 @@
             <input type="file" name="itemImg" accept="image/*" @change="imgUp">
 
            <button id="button" @click="addflower">Submit</button>
-           <button id="button" @click="theDate">chckArray</button>
+           <button id="button" @click="theDate">View All Your Products For Sale</button>
       </div>
     </div>
 </template>
@@ -202,7 +202,6 @@
         left: 17%;
     }
 #editItem{
-    border-color: red;
     position: absolute;
     margin: auto;
     z-index: 2;

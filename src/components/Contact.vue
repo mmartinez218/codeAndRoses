@@ -1,5 +1,6 @@
 <template>
   <div id="form" >
+      <Navbar/>
       <h2> Contact Us</h2>
         <form>
             <p id="formHeading">Name:</p>
@@ -24,7 +25,11 @@
     </div>
 </template>
 <script>
+    import Navbar from '@/components/Navbar'
     export default{
+        components: {
+            Navbar
+  },
         name:"AddItem",
         data(){
             return{

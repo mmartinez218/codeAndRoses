@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h2></h2>
+      <Navbar/>
     <div id="box">
         <button @click="ChangeAddItem" id="buttonAddItem" > Add New Product</button>
     </div>
@@ -78,13 +78,14 @@
           </button>
 
           <button id="button" @click="reviewBox(m.flower_id)">
-                Add Review ({{ updateItemAlert ? visible: hidden}})
+                Add Review {{ updateItemAlert ? visible: hidden}}
           </button>
         </div>
      </div>
   </div>
 </template>
 <script>
+    import Navbar from "@/components/Navbar.vue"
     import AddItem from "@/components/AddItem.vue"
     import Register from "@/components/Register.vue"
     import Products from "@/components/Products.vue"
@@ -95,8 +96,8 @@
             AddItemsV:AddItem,
             MyReg:Register,
             Products:Products,
-            CubeSpin
-
+            CubeSpin,
+            Navbar
         },
         data(){
            return {

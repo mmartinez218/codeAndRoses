@@ -7,6 +7,7 @@
        </div>
      </div>
     <div v-if="!loading">
+        <Navbar/>
       <div id="form" >
           <h2> Create an Account</h2>
                 <p id="formHeading">First name: </p>
@@ -31,9 +32,11 @@
 </template>
 <script>
     import CubeSpin from 'vue-loading-spinner/src/components/Circle'
+
     export default{
-      components: {
-        CubeSpin
+        
+    components: {
+        CubeSpin,
       },
 
         name:"SignUp",
@@ -74,7 +77,7 @@
                 if(data.status){
                   console.log("yeep");
                   
-                  this.$router.push("FlowerPage");
+                  this.$router.push("Welcome");
                 }else{
                   console.log("yaawp");
                   alert("That email already exists.");

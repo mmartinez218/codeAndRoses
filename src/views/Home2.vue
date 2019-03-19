@@ -2,7 +2,6 @@
   <div class="home">
     <Navbar/>
       
-      <HomeButtons/>
       <div id="cc">
       <h2>Take a Look at Our Product Categories</h2>
         </div>
