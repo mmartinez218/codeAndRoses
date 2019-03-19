@@ -1,9 +1,11 @@
 <template>
   <div class="about">
       <Navbar/>
+    <template v-if="adminCurrentlyLogged == true">
     <div id="box">
         <button @click="ChangeAddItem" id="buttonAddItem" > Add New Product</button>
     </div>
+  </template>
     <div v-if="page===1">
         <AddItemsV/>
      </div>
@@ -33,7 +35,7 @@
            <button id="button" @click="updateItemAlert=false">Cancel</button>
            <button id="button" @click="updateFlower" >Update</button>
     </div>
-      
+
     <div class="alerts reviewAlert"  id="form" v-if="reviewAlert">
                <h2>Add a Review</h2>
 
@@ -44,8 +46,8 @@
 
            <button id="button" @click="reviewAlert=false">Cancel</button>
            <button id="button" @click="reviewFlowerPrompt" >Update</button>
-    </div>  
-    
+    </div>
+
     <div class="alerts" id="form" v-if="deleteItemAlert">
         <h4> Are you sure you want to delete this item?</h4>
         <p style="text-align:center"> All content will be permanently deleted
@@ -71,17 +73,19 @@
             <p>Reviews</p>
             {{m.reviews}}<br/><br/>
           </div>
-
+          <template v-if="adminCurrentlyLogged == true">
           <button id="buttonUpdate" @click="updateFlowerPrompt(m.flower_id)">
                 Update {{ updateItemAlert ? visible : hidden }}
           </button>
           <button id="button" @click="deleteFlowerPrompt(m.flower_id)">
                 Delete {{ deleteItemAlert ? visible: hidden }}
           </button>
-
+          </template>
+          <template v-if="adminCurrentlyLogged == false && userLoggedIn == true">
           <button id="button" @click="reviewBox(m.flower_id)">
                 Add Review {{ updateItemAlert ? visible: hidden}}
           </button>
+        </template>
         </div>
      </div>
   </div>
@@ -127,6 +131,8 @@
             flowerIdToUpdate:0,
             flowerIdToAddReview:0,
             rev:null,
+            userLoggedIn:false,
+            adminCurrentlyLogged:false,
                }
         },
         mounted(){
@@ -134,7 +140,18 @@
           this.getFlower();
           console.log("MOUNTflowerpage");
         },
-        watch: {
+        beforeMount(){
+          console.log(localStorage.loggedIn, "yeetApp.vue");
+          if(localStorage.loggedIn == "true"){
+            this.userLoggedIn=true;
+            if(localStorage.adminLoggedIn == "true"){
+              this.adminCurrentlyLogged=true;
+            }else{
+              this.adminCurrentlyLogged=false;
+            }
+          }else{
+            this.userLoggedIn=false;
+          }
 
         },
         methods:{
@@ -227,7 +244,7 @@
               console.log("yeeet", this.flowerIdToDelete);
 
             },
-            
+
             updateFlowerPrompt:function(x){
               //Open Delete dialogue and set floweridtodelete
               //take the flower id from the post and set up a variable
@@ -235,7 +252,7 @@
               // Open are you sure to delete dialogue
               this.updateItemAlert=true;
             },
-            
+
             reviewFlowerPrompt:function(){
             console.log(this.flowerIdToAddReview);
             var formData = new FormData();
@@ -251,7 +268,7 @@
               })
               .then ((data) => {
                 console.log(data, "review");
-                  
+
                 //forceU();
                 //this.$forceUpdate();
                 //this.getFlower();
@@ -261,12 +278,12 @@
 
               console.log("yeeet", this.flowerIdToDelete);
             },
-            
+
             reviewBox:function(x){
              this.flowerIdToAddReview = x;
               this.reviewAlert=true;
             },
-            
+
             updateFlower:function(){
               //After form submit, update flower in the DATABASE
               //start loading screen
@@ -330,18 +347,18 @@
 </script>
 
 <style>
-    
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-    
+
 body, buttons {
     font-family: 'Montserrat', sans-serif;
     }
-    
+
     h2 {
         font-size: 2.5em;
         font-weight: 100;
     }
-    
+
 .alerts{
     position: fixed;
     top: 150px;
@@ -402,15 +419,15 @@ body, buttons {
     height: 100px;
     width: 43vw;
 }
-    
+
     textarea {
         max-width: 500px;
     }
-    
+
     #formHeading {
         font-size: 1.6em;
     }
-    
+
     #buttonAddItem {
         font-family: 'Montserrat', sans-serif;
         font-size: 1em;
@@ -427,13 +444,13 @@ body, buttons {
         display: flex;
         float: left;
     }
-    
+
     #buttonAddItem:hover {
         border-color: #2E0A38;
         color: #2E0A38;
         background-color: white;
     }
-    
+
     #box {
         margin-top: 50px;
         height: 80px;
@@ -441,7 +458,7 @@ body, buttons {
         align-content: center;
         align-items: center;
     }
-    
+
     #buttonUpdate {
     font-family: 'Montserrat', sans-serif;
     border: 2px solid #2E0A38;

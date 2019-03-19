@@ -34,7 +34,7 @@
     import CubeSpin from 'vue-loading-spinner/src/components/Circle'
 
     export default{
-        
+
     components: {
         CubeSpin,
       },
@@ -75,11 +75,11 @@
                 //if it does, alert user.
                 //iF not create new user and route to flowerpage
                 if(data.status){
-                  console.log("yeep");
-                  
-                  this.$router.push("Welcome");
+                  localStorage.userName = data.name;
+                  localStorage.loggedIn = true;
+                  //this.$router.push("Welcome");
+                  this.$router.push("home");
                 }else{
-                  console.log("yaawp");
                   alert("That email already exists.");
                 }
                 this.loading = false;

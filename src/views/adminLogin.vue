@@ -1,52 +1,111 @@
 <template>
+  <div>
+    <div v-if="loading" id="app">
+       <h3>Loading</h3>
+       <div style="text-align: center">
+         <cube-spin></cube-spin>
+       </div>
+     </div>
+    <div v-if="!loading">
   <div id="form">
       <Navbar/>
       <h2> Admin Login</h2>
-        <form>
+
             <p id="formHeading">Email: </p>
-            <input type="email" v-model="message" placeholder="Email" name="email">
+            <input type="email" v-model="email" placeholder="Email" name="email">
 
             <p id="formHeading">Password: </p>
-            <input type="password" v-model="message" placeholder="Choose a password" name="password">
+            <input type="password" v-model="pass" placeholder="Choose a password" name="password">
 
-            <button id="button" @click="submit">Login</button>
-            
-            <button id="button"> 
-        <router-link 
-            to="/Home">Cancel</router-link> 
+            <button id="button" @click="login">Login</button>
+
+            <button id="button">
+        <router-link
+            to="/Home">Cancel</router-link>
           </button>
-            
-            <button id="button"> 
-        <router-link 
-            to="/Login"> Regular User Login</router-link> 
+
+            <button id="button">
+        <router-link
+            to="/Login"> Regular User Login</router-link>
           </button>
-            
+
         <br><br><br>
             <div id="cc">
             Don't have an account?
-            <button id="button"> 
-        <router-link 
-            to="/SignUp">Create an Account</router-link> 
+            <button id="button">
+        <router-link
+            to="/SignUp">Create an Account</router-link>
           </button>
             </div>
-        </form>
 
     </div>
+    </div>
+  </div>
 </template>
 
 <script>
     import Navbar from '@/components/Navbar'
 
-    export default{
-        
-    components: {
-        Navbar
-      }
+    import CubeSpin from 'vue-loading-spinner/src/components/Circle'
+export default{
+  components: {
+    CubeSpin
+  },
+
+    name:"adminLogin",
+    data(){
+        return{
+            email: null,
+            pass: null,
+            loading:false,
+            userName:"",
+            loggedIn:false,
+            adminLoggedIn:false,
+        }
+    },
+    methods:{
+        login:function(){
+          //Asynchronous function to take user input
+          //start loading screen
+          this.loading = true;
+          //start fetch
+          var formData = new FormData();
+
+          formData.append('email', this.email);
+          formData.append('password', this.pass);
+
+          console.log(this.email, this.pass);
+
+          fetch('https://coderoses-db.herokuapp.com/selectAdmin.php', {
+            method: "POST",
+            body: formData
+          })
+          .then((response) => {
+            return response.json()
+          })
+          .then ((data) => {
+            console.log(data.name);
+            if(data == false || data == [] || data == null || data == ""){
+              alert("wrong pass or email");
+            }else{
+            localStorage.userName = data.name;
+            localStorage.loggedIn = true;
+            localStorage.adminLoggedIn = true;
+            location.reload();
+            this.$router.push("home");
+            }
+            this.loading = false;
+          }).catch( error => {
+            alert(error);
+            this.loading = false;
+          });
+        }
     }
+}
 </script>
 
 <style>
-    
+
 #form{
     margin: auto;
     width: 31em;
