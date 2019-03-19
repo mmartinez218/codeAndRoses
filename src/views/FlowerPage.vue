@@ -406,7 +406,7 @@ body, buttons {
     
     #buttonAddItem {
         font-family: 'Montserrat', sans-serif;
-        font-size: 2.5em;
+        font-size: 1em;
         position: relative;
         margin: auto;
         top: 0;
@@ -417,15 +417,15 @@ body, buttons {
         background-color: #2E0A38;
         border-color: 50px solid #2E0A38;
         padding: 15px;
-        border-radius: 20px;
+        border-radius: 5px;
         display: flex;
+        float: left;
     }
     
     #buttonAddItem:hover {
         border-color: #2E0A38;
         color: #2E0A38;
         background-color: white;
-        box-shadow: 1px 2px #2E0A38;
     }
     
     #box {

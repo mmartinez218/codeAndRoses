@@ -18,19 +18,21 @@
     
     .AddItem {
         font-family: 'Montserrat', sans-serif;
-        font-size: 3em;
+        font-size: 1em;
         color: white;
         background-color: #2E0A38;
         border-color: 50px solid #2E0A38;
         padding: 15px;
-        border-radius: 20px;
+        border-radius: 5px;
+        float: right;
+        margin-top: 10px;
+        margin-right: 15px;
     }
     
     .AddItem:hover {
         border-color: #2E0A38;
         color: #2E0A38;
         background-color: white;
-        box-shadow: 1px 2px #2E0A38;
     }
     
     

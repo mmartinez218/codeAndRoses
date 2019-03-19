@@ -75,7 +75,6 @@
     padding: 10px;
     align-items: center;
     border-radius: 5px;
-    box-shadow: 1px 2px #2E0A38;
 }
 
 #button:hover {
