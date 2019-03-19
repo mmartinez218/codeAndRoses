@@ -31,6 +31,19 @@
            <button id="button" @click="updateItemAlert=false">Cancel</button>
            <button id="button" @click="updateFlower" >Update</button>
     </div>
+      
+    <div class="alerts reviewAlert"  id="form" v-if="reviewAlert">
+               <h2>Add a Review</h2>
+
+            <p id="formHeading">Review: </p>
+
+          <textarea id="reviewInp" name="review" rows="10" cols="10" v-model="rev">Add a review
+          </textarea>
+
+           <button id="button" @click="reviewAlert=false">Cancel</button>
+           <button id="button" @click="reviewFlowerPrompt" >Update</button>
+    </div>  
+    
     <div class="alerts" id="form" v-if="deleteItemAlert">
         <h4> Are you sure you want to delete this item?</h4>
         <p style="text-align:center"> All content will be permanently deleted
@@ -54,8 +67,6 @@
             {{m.description}}<br/>
             ${{m.price}}<br/><br/>
           </div>
-          <textarea id="reviewInp" name="review" rows="10" cols="" v-model="rev">Add a review
-          </textarea>
 
           <button id="button" @click="updateFlowerPrompt(m.flower_id)">
                 Update ({{ updateItemAlert ? 'visible' : 'hidden' }})
@@ -64,8 +75,8 @@
                 Delete ({{ deleteItemAlert ? 'visible': 'hidden' }})
           </button>
 
-          <button id="button" @click="reviewFlowerPrompt(m.flower_id)">
-                Add Review
+          <button id="button" @click="reviewBox(m.flower_id)">
+                Add Review ({{ updateItemAlert ? 'visible': 'hidden'}})
           </button>
         </div>
      </div>
@@ -106,6 +117,7 @@
             compKey:0,
             updateItemAlert: false,
             deleteItemAlert: false,
+            reviewAlert: false,
             flowerIdToDelete:0,
             flowerIdToUpdate:0,
             flowerIdToAddReview:0,
@@ -209,6 +221,7 @@
               console.log("yeeet", this.flowerIdToDelete);
 
             },
+            
             updateFlowerPrompt:function(x){
               //Open Delete dialogue and set floweridtodelete
               //take the flower id from the post and set up a variable
@@ -216,11 +229,11 @@
               // Open are you sure to delete dialogue
               this.updateItemAlert=true;
             },
-            reviewFlowerPrompt:function(x){
-              this.flowerIdToAddReview = x;
-                
+            
+            reviewFlowerPrompt:function(){
+            console.log(this.flowerIdToAddReview);
             var formData = new FormData();
-              formData.append('flowerid', x);
+              formData.append('flowerid', this.flowerIdToAddReview);
               formData.append('review', this.rev);
               fetch('https://coderoses-db.herokuapp.com/reviews.php', {
                 method: "POST",
@@ -228,12 +241,11 @@
               })
               .then((response) => {
                 this.loading = false;
-                this.compKey += 1;
-                this.getFlower();
                 return response.text()
               })
               .then ((data) => {
-                console.log(data);
+                console.log(data, "review");
+                  
                 //forceU();
                 //this.$forceUpdate();
                 this.getFlower();
@@ -242,6 +254,12 @@
 
               console.log("yeeet", this.flowerIdToDelete);
             },
+            
+            reviewBox:function(x){
+             this.flowerIdToAddReview = x;
+              this.reviewAlert=true;
+            },
+            
             updateFlower:function(){
               //After form submit, update flower in the DATABASE
               //start loading screen
