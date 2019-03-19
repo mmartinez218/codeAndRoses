@@ -332,7 +332,8 @@ body, buttons {
     }
     
     h2 {
-        font-size: 2em;
+        font-size: 2.5em;
+        font-weight: 100;
     }
     
 .alerts{

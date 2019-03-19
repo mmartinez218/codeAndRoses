@@ -45,7 +45,7 @@
       <router-link id="navfooter" to="/FlowerPage"> Catalogue </router-link>  
       <router-link id="navfooter" to="/About"> Cart </router-link>
        <br>
-       <p>Copyright Code &amp; Roses</p>
+       <h5>Copyright Code &amp; Roses</h5>
    </div>
   </div>
 
@@ -114,7 +114,7 @@
     position: fixed;
     bottom: 0;
     background-color:#2E0A38;
-    height: 3.5em;
+    height: 4em;
     width: 100%;
     text-align: center;
     padding-top: 10px;
@@ -151,8 +151,15 @@ h4{
 }
     
     p {
-        font-family: 'Source Code Pro', monospace;
+    font-family: 'Montserrat', sans-serif;
+    color: #2E0A38;
+    }
+    
+    h5 {
         color: white;
+        margin-top: 16px;
+        font-weight: 100;
+        margin-bottom: 10px;
     }
     
 #header{
@@ -316,6 +323,7 @@ h4{
     background-color: #500F62;
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: 'Montserrat', sans-serif;
 }
     
 .subNav:hover{
@@ -353,5 +361,4 @@ h4{
         width: 100%;
     }
     
-
 </style>
