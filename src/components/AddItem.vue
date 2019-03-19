@@ -177,11 +177,12 @@
                 // this.flowerArr = this.dFlowers.length;
                 // this.dFlowers = [];
                 // this.getFlower();
-                data?this.$router.push("FlowerPage"):alert("false");
+                //data?this.$router.push("FlowerPage"):alert("false");
                 //alert("Flower Added")
                 //this.$set(this.dFlowers)
-                this.$forceUpdate();
-                console.log("yeet11");
+                //this.$forceUpdate();
+                //console.log("yeet11");
+                  location.reload();
                 // this.$router.push("FlowerPage");
               }).catch( error => {
                 this.loading = false;

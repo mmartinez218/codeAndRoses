@@ -67,7 +67,9 @@
             {{m.type}} <br/>
             {{m.dateadded}}<br/>
             {{m.description}}<br/>
-            ${{m.price}}<br/><br/>
+            ${{m.price}}<br/>
+            <p>Reviews</p>
+            {{m.reviews}}<br/><br/>
           </div>
 
           <button id="buttonUpdate" @click="updateFlowerPrompt(m.flower_id)">
@@ -206,7 +208,8 @@
                 console.log(data);
                 //forceU();
                 //this.$forceUpdate();
-                this.getFlower();
+                //this.getFlower();
+                  location.reload();
                 //this.$router.push("FlowerPage");
               }).catch( error => { console.log(error); });
 
@@ -251,7 +254,8 @@
                   
                 //forceU();
                 //this.$forceUpdate();
-                this.getFlower();
+                //this.getFlower();
+                  location.reload();
                 //this.$router.push("FlowerPage");
               }).catch( error => { console.log(error); });
 
@@ -308,7 +312,8 @@
               })
               .then ((data) => {
                 //this.compKey++;
-                this.getFlower();
+                //this.getFlower();
+                  location.reload();
                 //alert("Flower Added")
                 alert("Flower Update Successful");
                 // this.$router.push("FlowerPage");

@@ -16,7 +16,7 @@
             <p id="title"> Arrangements </p>
              <div id="galleryBox">
                 <div id="galleryCaption">
-                    Flower arrangements are an important part of the ambience on any occasion. Arrangements come in glass vases and are bigger than Bouquet
+                    Flower arrangements are an important part of the ambience on any occasion. 
                 </div><br/>
                 <button @click="ChangeAddItem" id="button">View Collection</button>
             </div>
@@ -27,7 +27,7 @@
             <p id="title">  Planters </p>
             <div id="galleryBox">
                 <div id="galleryCaption">
-                    A planter comes in pots made from plastic, wood, or stone. Pot selection will vary on seller. The soil in the planters will help your flowers live longer.                
+                    A planter comes in pots made from plastic, wood, or stone. Pot selection will vary on seller.               
                 </div><br/>
                 <button @click="ChangeAddItem" id="button">View Collection</button>
              </div>
@@ -53,6 +53,7 @@ export default {
             },
             ChangeAddItem:function(){
                 this.page = 1;
+                this.$router.push("FlowerPage");
             },
             ChangeRegister:function(){
                 this.page = 2;
