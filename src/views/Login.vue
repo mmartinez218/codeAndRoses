@@ -16,7 +16,6 @@
               <input type="password" v-model="pass" placeholder="Choose a password" name="password">
 
               <button id="button" @click="login">Login</button>
-              <button id="button" @click="">Cancel</button>
 
           <router-link
               to="/adminLogin">Admin Login</router-link>
@@ -63,10 +62,15 @@ export default{
             return response.json()
           })
           .then ((data) => {
+            if(data == "The username or password do not match"){
+              alert(data);
+            }else{
             localStorage.userName = data.name;
             localStorage.loggedIn = true;
-            this.loading = false;
+            location.reload();
             this.$router.push("home");
+            }
+            this.loading = false;
           }).catch( error => {
             alert(error);
             this.loading = false;

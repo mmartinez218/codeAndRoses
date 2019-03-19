@@ -6,9 +6,14 @@
     <h1>Code & Roses</h1>
     <div id="navBar">
       <router-link id="nav" to="/home">Code & Roses</router-link>
-      <router-link id="nav" to="/SignUp" v-if="userLoggedIn == false">Sign Up</router-link>
-      <router-link id="nav" to="/Login" v-if="userLoggedIn == false">Login</router-link>
-      <button id="nav" v-if="userLoggedIn == true" @click="logout">Logout</button>
+      <template v-if="userLoggedIn == false">
+        <router-link id="nav" to="/SignUp">Sign Up</router-link>
+        <router-link id="nav" to="/Login">Login</router-link>
+      </template>
+      <!-- <router-link id="nav" to="/Login" v-if="userLoggedIn == true">Logout</router-link>
+      <button v-if="userLoggedIn == false" @click="signup">Sign Up</button>
+      <button v-if="userLoggedIn == false" @click="login">Login</button> -->
+      <button v-else @click="logout">Logout</button>
 
       <router-link
             id="nav"
@@ -55,11 +60,22 @@ export default{
     }
   },
   beforeMount(){
-    if(localStorage.loggedIn){
-      this.userLoggedIn=true
+    console.log(localStorage.loggedIn, "yeetApp.vue");
+    if(localStorage.loggedIn == "true"){
+      this.userLoggedIn=true;
+      console.log("yeet");
+    }else{
+      this.userLoggedIn=false;
+      console.log("yaw");
     }
   },
   methods:{
+    login:function(){
+      this.$router.push("Login");
+    },
+    signup:function(){
+      this.$router.push("SignUp");
+    },
     logout:function(){
       console.log(localStorage.userName, localStorage.loggedIn);
       localStorage.userName = "";
@@ -67,6 +83,7 @@ export default{
       this.userLoggedIn = false
       console.log(localStorage.userName, localStorage.loggedIn);
       this.$router.push("home");
+      // return false;
     }
   },
 }
